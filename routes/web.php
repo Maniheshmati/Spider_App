@@ -24,3 +24,24 @@ Route::get('/register', function (){
 Route::get('/login', function (){
     return view('login');
 });
+
+route::get('/posts', function (){
+    return view('posts.posts');
+});
+
+// Route::get('/find', function (){
+//     $posts = App\Models\Post::all();
+//     foreach ($posts as $post){
+//         echo $post->title;
+//         echo "<br>";
+//         echo $post->body;
+//     }
+// });
+
+Route::get('/search/{id}', function ($id){
+    $posts = App\Models\Post::where('id', $id)->get();
+
+    foreach ($posts as $post){
+        echo $post->title;
+    }
+});
