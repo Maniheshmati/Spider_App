@@ -1,4 +1,5 @@
 @include('layouts.header')
+@inject('posts', 'App\Models\Post')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,14 +7,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Post</title>
+    <title>Document</title>
 </head>
 <body>
-    <form action="/posts" method="post">
-    <label for="title">Title</label>
-    <input type="text" name="title" placeholder="Title">
+    <form action="posts" method="get">
+        <label for="postTitle">Title</label>
+        <input type="text" name="postTitle" placeholder="Title">
+        <label for="postBody">Body</label>
+        <input type="text" name="postBody" placeholder="Body">
+        <br>
+        <input type="submit">
 
-    <input type="submit" name="submit">
 
     </form>
 </body>

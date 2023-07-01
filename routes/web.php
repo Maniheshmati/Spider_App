@@ -45,3 +45,21 @@ Route::get('/search/{id}', function ($id){
         echo $post->title;
     }
 });
+
+Route::get('/insertPost', function (){
+    // $post = new App\Models\Post();
+
+    // $post->title = "Title";
+    // $post->body = "Body";
+    // $post->save();
+    // return "saved";
+    return view('posts.create');
+
+});
+
+Route::get('/deletePost', function (){
+    return view('posts.delete');
+});
+Route::get('/updatePost', function (){
+    return view('posts.update');
+});
