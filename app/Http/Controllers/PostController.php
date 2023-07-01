@@ -57,4 +57,31 @@ public function delete($id)
   return redirect()->route('posts.index');
 }
 
+public function modifyPostForm()
+{
+    return view('modify-post');
+}
+
+public function modifyPost(Request $request)
+{
+    $validatedData = $request->validate([
+        'id' => 'required|numeric',
+        'title' => 'required|string',
+        'body' => 'required|string',
+    ]);
+
+    $postId = $validatedData['id'];
+    $post = Post::find($postId);
+
+    if (!$post) {
+        return redirect()->back()->with('error', 'Post not found.');
+    }
+
+    $post->title = $validatedData['postTitle'];
+    $post->body = $validatedData['postBody'];
+    $post->save();
+
+    return redirect()->back()->with('success', 'Post modified successfully.');
+}
+
 }

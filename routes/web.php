@@ -63,3 +63,12 @@ Route::get('/deletePost', function (){
 Route::get('/updatePost', function (){
     return view('posts.update');
 });
+Route::get('/updateInfo', function(){
+    $post = App\Models\Post::find($_GET['id']);
+    $post->id = $_GET['id'];
+    $post->title = $_GET['postTitle'];
+    $post->body = $_GET['postBody'];
+    $post->save();
+    return view('posts.posts');
+    
+});
