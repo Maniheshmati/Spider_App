@@ -47,18 +47,26 @@ Route::get('/search/{id}', function ($id){
 });
 
 Route::get('/insertPost', function (){
-    // $post = new App\Models\Post();
-
-    // $post->title = "Title";
-    // $post->body = "Body";
-    // $post->save();
-    // return "saved";
     return view('posts.create');
+});
+
+Route::get('/insertInfo', function(){
+        $post = new App\Models\Post();
+        $post->title = $_GET['postTitle'];
+        $post->body = $_GET['postBody'];
+        $post->save();
+        return view('posts.posts');
 
 });
 
+
+
 Route::get('/deletePost', function (){
-    return view('posts.delete');
+    
+        return view('posts.delete');
+
+    
+
 });
 Route::get('/updatePost', function (){
     return view('posts.update');
@@ -70,5 +78,17 @@ Route::get('/updateInfo', function(){
     $post->body = $_GET['postBody'];
     $post->save();
     return view('posts.posts');
+    
+});
+Route::get('/deleteInfo', function(){
+
+    
+        $post = App\Models\Post::find($_GET['id']);
+        $post->delete();
+        return view('posts.posts');
+
+    
+
+        return $e;
     
 });

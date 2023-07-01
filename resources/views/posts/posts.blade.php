@@ -2,14 +2,14 @@
 @inject('posts', 'App\Models\Post')
 
 
-@if ($_GET == true)
+{{-- @if ($_GET == true)
 {{$post = new App\Models\Post()}}
 {{$post->title = $_GET['postTitle']}}
 {{$post->body = $_GET['postBody']}}
-{{$post->save()}}
+{{$post->save()}} --}}
 
   
-@endif
+{{-- @endif --}}
 <div class="container">
   <a href="insertPost"><button class="btn btn-primary">Create Post</button></a>
   <a href="updatePost"><button class="btn btn-primary">Update Post</button></a>
@@ -27,6 +27,7 @@
       <tbody>
         @foreach ($posts::all() as $post)
           <tr>
+            <td>{{$post->id}}</td>
             <td>{{$post->title}}</td>
             <td>{{$post->body}}</td>
             <td>{{$post->created_at}}</td>

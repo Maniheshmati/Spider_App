@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="posts" method="get">
+    <form action="/insertInfo" method="get">
         <label for="postTitle">Title</label>
         <input type="text" name="postTitle" placeholder="Title">
         <label for="postBody">Body</label>
