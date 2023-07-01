@@ -92,3 +92,7 @@ Route::get('/deleteInfo', function(){
         return $e;
     
 });
+
+Route::get('/search', function(){
+    return view('posts.search');
+});
