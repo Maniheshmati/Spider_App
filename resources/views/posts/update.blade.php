@@ -10,15 +10,16 @@
     <title>Modify Post</title>
 </head>
 <body>
-    <form action="/updateInfo" method="GET">
+    <form action="" method="POST">
+        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <label for="id">Post ID:</label>
         <input type="number" name="id" placeholder="Post ID">
         <br>
         <label for="postTitle">Title: </label>
-        <input type="text" name="postTitle" placeholder="Post Title">
+        <input type="text" name="title" placeholder="Post Title">
         <br>
         <label for="postBody">Body: </label>
-        <textarea name="postBody" id="postBody" cols="30" rows="10" placeholder="Post Body"></textarea>
+        <textarea name="body" id="body" cols="30" rows="10" placeholder="Post Body"></textarea>
         <br>
         <input type="submit">
     </form>

@@ -67,18 +67,11 @@ Route::get('/insertInfo', function(){
 
 Route::get('/posts/delete', [PostController::class, 'deleteView']);
 Route::post('/posts/delete',  [PostController::class, 'delete']);
-Route::get('/updatePost', function (){
-    return view('posts.update');
-});
-Route::get('/updateInfo', function(){
-    $post = App\Models\Post::find($_GET['id']);
-    $post->id = $_GET['id'];
-    $post->title = $_GET['postTitle'];
-    $post->body = $_GET['postBody'];
-    $post->save();
-    return view('posts.posts');
-    
-});
+
+
+Route::get('/posts/update', [PostController::class, 'updateView']);
+Route::post('/posts/update', [PostController::class, 'update']);
+
 Route::get('/deleteInfo', function(){
 
     

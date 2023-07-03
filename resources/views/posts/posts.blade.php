@@ -3,9 +3,9 @@
 
 
 <div class="container">
-  <a href="insertPost"><button class="btn btn-primary">Create Post</button></a>
-  <a href="updatePost"><button class="btn btn-primary">Update Post</button></a>
-  <a href="deletePost"><button class="btn btn-primary">Delete Post</button></a> 
+  <a href="posts/create"><button class="btn btn-primary">Create Post</button></a>
+  <a href="posts/update"><button class="btn btn-primary">Update Post</button></a>
+  <a href="posts/delete"><button class="btn btn-primary">Delete Post</button></a> 
   <a href="/"><button class="btn btn-primary">Search in posts</button></a> 
   <br>
     <h1>Posts</h1>

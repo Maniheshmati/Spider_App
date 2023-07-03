@@ -41,14 +41,19 @@ public function edit($id)
   return view('posts.edit', compact('post'));
 }
 
-public function update(Request $request, $id)
+public function updateView(){
+  return view('posts.update');
+}
+
+public function update(Request $request)
 {
+  $id = $request->input('id');
   $post = Post::findOrFail($id);
   $post->title = $request->input('title');
   $post->body = $request->input('body');
   $post->save();
 
-  return redirect()->route('posts.index');
+  return view('posts.posts');
 }
 public function deleteView(){
   return view('posts.delete');
