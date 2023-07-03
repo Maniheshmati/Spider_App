@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
+
 
 class PostController extends Controller
 {
@@ -30,7 +32,7 @@ public function store(Request $request)
   $post->body = $request->input('body');
   $post->save();
 
-  return redirect()->route('posts.index');
+  return view('posts.posts');
 }
 
 public function edit($id)

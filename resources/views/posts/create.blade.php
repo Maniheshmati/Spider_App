@@ -1,5 +1,5 @@
 @include('layouts.header')
-@inject('posts', 'App\Models\Post')
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,11 +10,12 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/insertInfo" method="get">
+    <form action="" method="post">
+        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <label for="postTitle">Title</label>
-        <input type="text" name="postTitle" placeholder="Title">
+        <input type="text" name="title" placeholder="Title">
         <label for="postBody">Body</label>
-        <input type="text" name="postBody" placeholder="Body">
+        <input type="text" name="body" placeholder="Body">
         <br>
         <input type="submit">
 

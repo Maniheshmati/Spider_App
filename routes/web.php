@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,9 +46,8 @@ Route::get('/search/{id}', function ($id){
     }
 });
 
-Route::get('/insertPost', function (){
-    return view('posts.create');
-});
+Route::get('posts/create', [PostController::class, 'create']);
+Route::post('posts/create', [PostController::class, 'store']);
 
 Route::get('/insertInfo', function(){
         $post = new App\Models\Post();
