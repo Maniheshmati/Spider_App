@@ -9,8 +9,8 @@
     <title>Delete post</title>
 </head>
 <body>
-    <form action="/deleteInfo" method="GET">
-
+    <form action="" method="post">
+        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <input type="number" name="id" placeholder="ID">
         <br>
         <input type="submit">

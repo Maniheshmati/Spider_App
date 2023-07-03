@@ -60,13 +60,13 @@ Route::get('/insertInfo', function(){
 
 
 
-Route::get('/deletePost', function (){
+// Route::get('/deletePost', function (){
     
-        return view('posts.delete');
+//         return view('posts.delete');
+// });
 
-    
-
-});
+Route::get('/posts/delete', [PostController::class, 'deleteView']);
+Route::post('/posts/delete',  [PostController::class, 'delete']);
 Route::get('/updatePost', function (){
     return view('posts.update');
 });

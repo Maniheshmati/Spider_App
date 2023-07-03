@@ -50,14 +50,20 @@ public function update(Request $request, $id)
 
   return redirect()->route('posts.index');
 }
+public function deleteView(){
+  return view('posts.delete');
+}
 
-public function delete($id)
+public function delete(Request $request)
 {
+  $id = $request->input('id');
   $post = Post::findOrFail($id);
+  
   $post->delete();
 
-  return redirect()->route('posts.index');
+  return view('posts.posts');
 }
+
 
 public function modifyPostForm()
 {
