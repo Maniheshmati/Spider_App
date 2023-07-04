@@ -21,9 +21,8 @@ Route::get('/', function () {
 Route::get('/users/register', [UserController::class, 'createView']);
 Route::post('/users/register', [UserController::class, 'create']);
 
-Route::get('/login', function (){
-    return view('login');
-});
+Route::get('/users/login', [UserController::class, 'loginView']);
+Route::post('/users/login', [UserController::class, 'login']);
 
 route::get('/posts', function (){
     return view('posts.posts');

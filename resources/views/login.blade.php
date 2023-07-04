@@ -2,10 +2,11 @@
 
 <div class="container">
     <h1>Login</h1>
-    <form action="/login" method="post">
+    <form action="" method="post">
+      <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
       <div class="mb-3">
-        <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" name="email" required>
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" name="username" required>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>

@@ -23,7 +23,7 @@
               <a class="nav-link" href="/posts">Posts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="login">Login</a>
+              <a class="nav-link" href="/users/login">Login</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/users/register">Register</a>
