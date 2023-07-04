@@ -26,7 +26,7 @@
               <a class="nav-link" href="login">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="register">Register</a>
+              <a class="nav-link" href="/users/register">Register</a>
             </li>
             <li class="nav-item">
               <a href="/" class="nav-link">Search</a>

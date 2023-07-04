@@ -17,8 +17,10 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
     ];
@@ -33,6 +35,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
     /**
      * The attributes that should be cast.
      *
@@ -46,7 +49,7 @@ class User extends Authenticatable
     public function post(){
         return $this->hasOne('App\Post');
     }
-    
+
     public function posts(){
         return $this->hasMany('App\Post');
     }

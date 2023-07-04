@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +18,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/register', function (){
-    return view('register');
-});
+Route::get('/users/register', [UserController::class, 'createView']);
+Route::post('/users/register', [UserController::class, 'create']);
 
 Route::get('/login', function (){
     return view('login');
