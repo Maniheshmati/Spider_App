@@ -27,11 +27,17 @@ public function create()
 
 public function store(Request $request)
 {
-  $post = new Post;
-  $post->title = $request->input('title');
-  $post->body = $request->input('body');
-  $post->save();
+  $request->validate([
+    'title' => 'required',
+    'body' => 'required',
+    'user_id' => 'required',
 
+]);
+  Post::create([
+    'title' => $request->title,
+    'body' => $request->body,
+    'user_id' => $request->user_id
+  ]);
   return view('posts.posts');
 }
 

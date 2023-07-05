@@ -13,6 +13,7 @@
       <thead>
         <tr>
           <th>ID</th>
+          <th>User</th>
           <th>Title</th>
           <th>Text</th>
             <th>Created at</th>
@@ -23,6 +24,7 @@
         @foreach ($posts::all() as $post)
           <tr>
             <td>{{$post->id}}</td>
+            <td>{{$post->user_id}}</td>
             <td>{{$post->title}}</td>
             <td>{{$post->body}}</td>
             <td>{{$post->created_at}}</td>

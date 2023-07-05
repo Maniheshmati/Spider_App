@@ -14,8 +14,13 @@
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
         <label for="postTitle">Title</label>
         <input type="text" name="title" placeholder="Title">
+        {{$errors->first('title')}}
         <label for="postBody">Body</label>
         <input type="text" name="body" placeholder="Body">
+        {{$errors->first('body')}}
+        <label for="user_id">User</label>
+        <input type="text" name="user_id" placeholder="User">
+        {{$errors->first('user_id')}}
         <br>
         <input type="submit">
 
