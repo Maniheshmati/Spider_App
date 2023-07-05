@@ -22,7 +22,9 @@
       </thead>
       <tbody>
         @foreach ($posts::all() as $post)
-        {{  $username = $users::find($post->user_id)->username;}}
+        @php
+        $username = $users::find($post->user_id)->username;
+        @endphp
           <tr>
             <td>{{$post->id}}</td>
             <td>{{$username}}</td>
