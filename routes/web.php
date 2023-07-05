@@ -91,3 +91,6 @@ Route::get('/deleteInfo', function(){
 Route::get('/search', function(){
     return view('posts.search');
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
