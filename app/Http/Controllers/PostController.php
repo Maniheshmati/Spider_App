@@ -36,10 +36,10 @@ public function store(Request $request)
 
 Post::create([
   'title' => $request->title,
-  'body' => $request->body,  
+  'body' => $request->body,
   'user_id' => $request->user_id
   ]);
-  return view('posts.posts');
+  return redirect('/posts');
 }
 
 public function edit($id)
@@ -70,7 +70,7 @@ public function delete(Request $request)
 {
   $id = $request->input('id');
   $post = Post::findOrFail($id);
-  
+
   $post->delete();
 
   return view('posts.posts');
