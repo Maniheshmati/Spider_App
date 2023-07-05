@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Requests\RegisterRequest;
 class UserController extends Controller
 {
 
@@ -13,26 +13,17 @@ class UserController extends Controller
         return view("register");
     }
 
-    public function create(Request $request){
+    public function create(RegisterRequest $request){
         $request->validate([
             'name' => 'required',
             'username' => ['required', 'unique:users,username,NULL,id'],
             'email' => ['required', 'unique:users'],
             'password' => 'required',
         ]);
-        
-        # Write an if to check if username does not exist
-        if(User::where('username', $request->username)->exists()){
-            $request->session()->flash('error', 'Username already exists');
-            
-            return redirect('users/register');
-        }
-        User::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
+
+        $user = User::create($request->validated());
+        auth()->login($user);
+        return redirect('posts')->withSuccess('You have registered');
 
     }
 
@@ -50,7 +41,7 @@ class UserController extends Controller
             return redirect()->intended('posts')->withSuccess('You have logged in');
         }
         return redirect('login')->withSuccess('Invalid credentials');
-        
+
         }
     }
 
