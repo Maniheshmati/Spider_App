@@ -33,10 +33,11 @@ public function store(Request $request)
     'user_id' => 'required',
 
 ]);
-  Post::create([
-    'title' => $request->title,
-    'body' => $request->body,
-    'user_id' => $request->user_id
+
+Post::create([
+  'title' => $request->title,
+  'body' => $request->body,  
+  'user_id' => $request->user_id
   ]);
   return view('posts.posts');
 }

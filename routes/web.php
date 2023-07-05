@@ -28,6 +28,10 @@ route::get('/posts', function (){
     return view('posts.posts');
 });
 
+route::get('/profile', function (){
+    
+});
+
 // Route::get('/find', function (){
 //     $posts = App\Models\Post::all();
 //     foreach ($posts as $post){

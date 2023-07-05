@@ -1,6 +1,6 @@
 @include('layouts.header')
 @inject('posts', 'App\Models\Post')
-
+@inject('users', 'App\Models\User')
 
 <div class="container">
   <a href="posts/create"><button class="btn btn-primary">Create Post</button></a>
@@ -22,9 +22,10 @@
       </thead>
       <tbody>
         @foreach ($posts::all() as $post)
+        {{  $username = $users::find($post->user_id)->username;}}
           <tr>
             <td>{{$post->id}}</td>
-            <td>{{$post->user_id}}</td>
+            <td>{{$username}}</td>
             <td>{{$post->title}}</td>
             <td>{{$post->body}}</td>
             <td>{{$post->created_at}}</td>
