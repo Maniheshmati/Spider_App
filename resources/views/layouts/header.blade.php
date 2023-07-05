@@ -1,3 +1,5 @@
+@inject('loggedIn', 'App\Http\Controllers\UserController')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +32,8 @@
             </li>
             <li class="nav-item">
               <a href="/" class="nav-link">Search</a>
+            </li>
+            <li class="nav-item">
             </li>
           </ul>
         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -44,15 +45,12 @@ class UserController extends Controller
             'username' => 'required',
             'password' => 'required',
         ]);
-         $user = User::where('username', $request->username)->first();
-         if($user){
-             if(password_verify($request->password, $user->password)){
-                 $request->session()->put('user', $user);
-                 return redirect('posts');
-             }
-         }
-         else{
-             $request->session()->flash('error', 'Invalid username or password');
-            return redirect('users/login');
-         }
-        }}
+        $credentials = $request->only('username', 'password');
+        if(Auth::attempt($credentials)){
+            return redirect()->intended('posts')->withSuccess('You have logged in');
+        }
+        return redirect('login')->withSuccess('Invalid credentials');
+        
+        }
+    }
+
