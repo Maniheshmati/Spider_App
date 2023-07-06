@@ -29,7 +29,7 @@ route::get('/posts', function (){
 });
 
 route::get('/profile', function (){
-    
+
 });
 
 // Route::get('/find', function (){
@@ -64,7 +64,7 @@ Route::get('/insertInfo', function(){
 
 
 // Route::get('/deletePost', function (){
-    
+
 //         return view('posts.delete');
 // });
 
@@ -77,15 +77,15 @@ Route::post('/posts/update', [PostController::class, 'update']);
 
 Route::get('/deleteInfo', function(){
 
-    
+
         $post = App\Models\Post::find($_GET['id']);
         $post->delete();
         return view('posts.posts');
 
-    
+
 
         return $e;
-    
+
 });
 
 Route::get('/search', function(){
