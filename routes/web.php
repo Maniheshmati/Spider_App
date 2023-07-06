@@ -24,9 +24,12 @@ Route::post('/users/register', [UserController::class, 'create']);
 Route::get('/users/login', [UserController::class, 'loginView']);
 Route::post('/users/login', [UserController::class, 'login']);
 
+
 route::get('/posts', function (){
     return view('posts.posts');
 });
+
+Route::get('/user/{username}', [UserController::class, 'show'])->name('user.profile');
 
 route::get('/profile', function (){
 

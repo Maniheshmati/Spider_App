@@ -43,5 +43,23 @@ class UserController extends Controller
         return redirect('login')->withSuccess('Invalid credentials');
 
         }
+
+    public function show(){
+    // Find the user by username in the database
+    $user = User::where('username', request('username'))->first();
+
+    // If the user is not found, redirect to a 404 page
+    if ($user) {
+        return view('profile', ['user' => $user, 'posts' => "App\Models\Post"]);
+
+    }
+    else{
+        return view('404');
+    }
+
+    // If the user is found, show the user profile view
+
+
+    }
     }
 
