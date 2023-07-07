@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SearchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,9 +80,8 @@ Route::get('/deleteInfo', function(){
 
 });
 
-Route::get('/search', function(){
-    return view('posts.search');
-});
+Route::get('/search', [SearchController::class, 'search']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
