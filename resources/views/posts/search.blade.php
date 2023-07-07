@@ -18,9 +18,9 @@
         @if(isset($posts))
         @foreach ($posts as $post)
         <tr>
-          <td>{{$post->id}}</td>
-          <td>{{$post->title}}</td>
-          <td>{{$post->body}}</td>
+          <td>{{ $post->id }}</td>
+          <td>{{ $post->title }}</td>
+          <td>{{ $post->body }}</td>
           <td>{{ $post->created_at }}</td>
           <td>{{ $post->updated_at }}</td>
         </tr>
@@ -43,9 +43,9 @@
       @if(isset($users))
       @foreach ($users as $user)
       <tr>
-        <td>{{$user->id}}</td>
-        <td>{{$user->name}}</td>
-        <td>{{$user->username}}</td>
+        <td>{{ $user->id }}</td>
+        <td><a href="/user/{{ $user->username }}">{{ $user->name }}</a></td>
+        <td>{{ $user->username }}</td>
         <td>{{ $user->email }}</td>
       </tr>
       @endforeach
