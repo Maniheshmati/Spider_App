@@ -52,8 +52,8 @@ Route::get('/search/{id}', function ($id){
     }
 });
 
-Route::get('posts/create', [PostController::class, 'create']);
-Route::post('posts/create', [PostController::class, 'store']);
+Route::get('posts/create', [PostController::class, 'create'])->middleware('auth');
+Route::post('posts/create', [PostController::class, 'store'])->middleware('auth');
 
 Route::get('/insertInfo', function(){
         $post = new App\Models\Post();
@@ -71,12 +71,12 @@ Route::get('/insertInfo', function(){
 //         return view('posts.delete');
 // });
 
-Route::get('/posts/delete', [PostController::class, 'deleteView']);
-Route::post('/posts/delete',  [PostController::class, 'delete']);
+Route::get('/posts/delete', [PostController::class, 'deleteView'])->middleware('auth');
+Route::post('/posts/delete',  [PostController::class, 'delete'])->middleware('auth');
 
 
-Route::get('/posts/update', [PostController::class, 'updateView']);
-Route::post('/posts/update', [PostController::class, 'update']);
+Route::get('/posts/update', [PostController::class, 'updateView'])->middleware('auth');
+Route::post('/posts/update', [PostController::class, 'update'])->middleware('auth');
 
 Route::get('/deleteInfo', function(){
 
