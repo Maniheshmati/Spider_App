@@ -16,7 +16,7 @@ use App\Http\Controllers\SearchController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('search');
 });
 
 Route::get('/users/register', [UserController::class, 'createView']);
