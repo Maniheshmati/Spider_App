@@ -56,10 +56,12 @@ class UserController extends Controller
     else{
         return view('404');
     }
+    }
 
-    // If the user is found, show the user profile view
+    public function index(){
 
-
+        $users = User::all();
+        return view('users', ['users' => $users]);
     }
     }
 

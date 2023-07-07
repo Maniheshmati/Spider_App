@@ -35,14 +35,6 @@ route::get('/profile', function (){
 
 });
 
-// Route::get('/find', function (){
-//     $posts = App\Models\Post::all();
-//     foreach ($posts as $post){
-//         echo $post->title;
-//         echo "<br>";
-//         echo $post->body;
-//     }
-// });
 
 Route::get('/search/{id}', function ($id){
     $posts = App\Models\Post::where('id', $id)->get();
@@ -66,10 +58,6 @@ Route::get('/insertInfo', function(){
 
 
 
-// Route::get('/deletePost', function (){
-
-//         return view('posts.delete');
-// });
 
 Route::get('/posts/delete', [PostController::class, 'deleteView'])->middleware('auth');
 Route::post('/posts/delete',  [PostController::class, 'delete'])->middleware('auth');
@@ -101,3 +89,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/users', [UserController::class, 'index']);
