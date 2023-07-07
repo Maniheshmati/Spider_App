@@ -1,4 +1,3 @@
-@inject('loggedIn', 'App\Http\Controllers\UserController')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,16 +23,22 @@
               <a class="nav-link" href="/posts">Posts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/users/login">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/users/register">Register</a>
-            </li>
-            <li class="nav-item">
               <a href="/" class="nav-link">Search</a>
             </li>
-            <li class="nav-item">
-            </li>
+
+                @if (Auth::check()){
+                    <a href="/home" class="nav-link">Dashboard</a>
+                }
+                @else
+                <li class="nav-item">
+                    <a href="/users/login" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/users/register" class="nav-link">Register</a>
+                </li>
+                @endif
+
+
           </ul>
         </div>
       </div>
