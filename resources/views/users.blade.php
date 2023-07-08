@@ -10,7 +10,7 @@
 </head>
 <body>
 
-   
+
 
     <table class="table">
         <thead>
@@ -31,7 +31,7 @@
             </tr>
           @endforeach
 
+
 </body>
 </html>
 
-@include(('layouts.footer'))
