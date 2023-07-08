@@ -19,6 +19,15 @@
         <input type="text" name="body" placeholder="Body">
         {{$errors->first('body')}}
         <br>
+        <select name="category">
+            @if ($categories)
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        @endif
+        {{$errors->first('category')}}
+        </select>
+        <br>
         <input type="submit">
 
 

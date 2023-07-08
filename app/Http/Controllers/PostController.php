@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Catagory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,25 +28,34 @@ public function show(){
 
 public function create()
 {
-  return view('posts.create');
+    $categories = Catagory::all();
+  return view('posts.create', ['categories' => $categories]);
 }
 
 public function store(Request $request)
 {
-  $request->validate([
-    'title' => 'required',
-    'body' => 'required',
+    $request->validate([
+      'title' => 'required',
+      'body' => 'required',
+      'category' => 'required',
+    ]);
 
-]);
-$user = Auth::user();
+    $user = Auth::user();
+    $category = Catagory::find($request->category);
 
-Post::create([
-  'title' => $request->title,
-  'body' => $request->body,
-  'user_id' => $user->id,
-  ]);
-  return redirect('/posts');
-}
+    if (!$category) {
+        return redirect()->back()->with('error', 'Invalid category selected.');
+    }
+
+    Post::create([
+      'title' => $request->title,
+      'body' => $request->body,
+      'user_id' => $user->id,
+      'category_id' => $category->id,
+    ]);
+
+    return redirect('/posts');
+  }
 
 public function edit($id)
 {

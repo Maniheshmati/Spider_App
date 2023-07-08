@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\CatagoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,8 +54,11 @@ Route::get('/insertInfo', function(){
 
 });
 
-
-
+Route::get('/categories', function(){
+    return view('categories.show');
+})->name('categories.show');
+Route::get('/catagories/create', [CatagoryController::class, 'createView'])->middleware('auth');
+Route::post('/catagories/create', [CatagoryController::class, 'create'])->middleware('auth');
 
 Route::get('/posts/delete', [PostController::class, 'deleteView'])->middleware('auth');
 Route::post('/posts/delete',  [PostController::class, 'delete'])->middleware('auth')->name('posts.delete');
