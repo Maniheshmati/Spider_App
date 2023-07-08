@@ -20,4 +20,7 @@
         </tr>
       @endforeach
     </tbody>
+    <br><br>
+    <a href="{{ route('catagory.create') }}"><button class="btn btn-primary">Create Catagory</button></a>
+
   </table>

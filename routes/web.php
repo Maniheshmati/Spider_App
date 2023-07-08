@@ -57,7 +57,9 @@ Route::get('/insertInfo', function(){
 Route::get('/catagory', function(){
     return view('categories.show');
 })->name('catagories.show');
-Route::get('/catagories/create', [CatagoryController::class, 'createView'])->middleware('auth');
+
+
+Route::get('/catagories/create', [CatagoryController::class, 'createView'])->middleware('auth')->name('catagory.create');
 Route::post('/catagories/create', [CatagoryController::class, 'create'])->middleware('auth');
 
 Route::get('/posts/delete', [PostController::class, 'deleteView'])->middleware('auth');

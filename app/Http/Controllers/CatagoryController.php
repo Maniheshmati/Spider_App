@@ -12,6 +12,6 @@ class CatagoryController extends Controller
     }
     public function create(Request $request){
         Catagory::create($request->all());
-        return redirect()->back();
+        return redirect(route('catagories.show'));
     }
 }
