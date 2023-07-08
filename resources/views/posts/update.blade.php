@@ -12,8 +12,7 @@
 <body>
     <form action="" method="POST">
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-        <label for="id">Post ID:</label>
-        <input type="number" name="id" placeholder="Post ID">
+
         <br>
         <label for="postTitle">Title: </label>
         <input type="text" name="title" placeholder="Post Title">

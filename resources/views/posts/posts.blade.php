@@ -3,11 +3,7 @@
 @inject('users', 'App\Models\User')
 
 <div class="container">
-  <a href="posts/create"><button class="btn btn-primary">Create Post</button></a>
-  <a href="posts/update"><button class="btn btn-primary">Update Post</button></a>
-  <a href="posts/delete"><button class="btn btn-primary">Delete Post</button></a>
-  <a href="/"><button class="btn btn-primary">Search in posts</button></a>
-  <br>
+
     <h1>Posts</h1>
     <table class="table">
       <thead>
@@ -26,12 +22,12 @@
         $username = $users::find($post->user_id)->username;
         @endphp
           <tr>
-            <td>{{$post->id}}</td>
-            <td>{{$username}}</td>
-            <td>{{$post->title}}</td>
-            <td>{{$post->body}}</td>
-            <td>{{$post->created_at}}</td>
-              <td>{{$post->updated_at}}</td>
+            <td><a href="/post/{{$post->id}}" class="nav-link"> {{ $post->id }}</a></td>
+            <td><a href="/post/{{$post->id}}" class="nav-link">{{ $username }}</a></td>
+            <td><a href="/post/{{$post->id}}" class="nav-link">{{ $post->title }}</a></td>
+            <td><a href="/post/{{$post->id}}" class="nav-link">{{ $post->body}}</a></td>
+            <td><a href="/post/{{$post->id}}" class="nav-link">{{$post->created_at }}</a></td>
+              <td><a href="/post/{{$post->id}}" class="nav-link">{{ $post->updated_at }}</a></td>
 
           </tr>
         @endforeach

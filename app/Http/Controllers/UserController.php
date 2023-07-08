@@ -69,5 +69,9 @@ class UserController extends Controller
 
         return view('users', ['users' => $users]);
     }
+    public function logout(){
+        $user = Auth::user();
+        Auth::logout();
+    }
 
 }

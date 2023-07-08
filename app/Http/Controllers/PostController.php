@@ -14,11 +14,16 @@ class PostController extends Controller
   return view('posts.index', compact('posts'));
 }
 
-// public function show($id)
-// {
-//   $post = Post::findOrFail($id);
-//   return view('posts.show', compact('post'));
-// }
+public function show(){
+    $post = Post::where('id', request('id'))->first();
+    if($post){
+        return view('posts.post', ['post' => $post]);
+    }
+    else{
+        return view('home');
+    }
+
+}
 
 public function create()
 {
@@ -54,13 +59,16 @@ public function updateView(){
 
 public function update(Request $request)
 {
-  $id = $request->input('id');
+  $id = $request->route('id');
+  if(Auth::user()->id == Post->user_id){
   $post = Post::findOrFail($id);
   $post->title = $request->input('title');
   $post->body = $request->input('body');
   $post->save();
 
-  return view('posts.posts');
+  return redirect('/posts');
+  }
+
 }
 public function deleteView(){
   return view('posts.delete');
@@ -73,7 +81,7 @@ public function delete(Request $request)
 
   $post->delete();
 
-  return view('posts.posts');
+  return redirect('/posts');
 }
 
 

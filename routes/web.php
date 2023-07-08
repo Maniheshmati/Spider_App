@@ -32,11 +32,7 @@ route::get('/posts', function (){
 
 Route::get('/user/{username}', [UserController::class, 'show'])->name('user.profile');
 
-route::get('/profile', function (){
-
-});
-
-
+Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
 Route::get('/search/{id}', function ($id){
     $posts = App\Models\Post::where('id', $id)->get();
 
@@ -46,7 +42,7 @@ Route::get('/search/{id}', function ($id){
 });
 
 Route::get('posts/create', [PostController::class, 'create'])->middleware('auth');
-Route::post('posts/create', [PostController::class, 'store'])->middleware('auth');
+Route::post('posts/create', [PostController::class, 'store'])->middleware('auth')->name('posts.create');
 
 Route::get('/insertInfo', function(){
         $post = new App\Models\Post();
@@ -61,11 +57,11 @@ Route::get('/insertInfo', function(){
 
 
 Route::get('/posts/delete', [PostController::class, 'deleteView'])->middleware('auth');
-Route::post('/posts/delete',  [PostController::class, 'delete'])->middleware('auth');
+Route::post('/posts/delete',  [PostController::class, 'delete'])->middleware('auth')->name('posts.delete');
 
 
-Route::get('/posts/update', [PostController::class, 'updateView'])->middleware('auth');
-Route::post('/posts/update', [PostController::class, 'update'])->middleware('auth');
+Route::get('/post/{id}/update', [PostController::class, 'updateView'])->middleware('auth');
+Route::post('/post/{id}/update', [PostController::class, 'update'])->middleware('auth')->name('posts.update');
 
 Route::get('/deleteInfo', function(){
 
