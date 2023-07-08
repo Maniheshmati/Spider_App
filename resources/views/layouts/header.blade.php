@@ -41,7 +41,9 @@
                 <li class="nav-item">
                     <a href="/users" class="nav-link">Users</a>
                 </li>
-
+                <li class="nav-item">
+                    <a href="/catagory/create" class="nav-link">Create Catagory</a>
+                </li>
 
 
           </ul>
