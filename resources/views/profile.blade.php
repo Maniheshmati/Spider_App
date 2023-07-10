@@ -1,4 +1,4 @@
-@include('layouts/header')
+@include('layouts.header')
 <html>
     <header>
         <title>{{$user->username}}</title>
@@ -33,8 +33,8 @@
           </tr>
         @endforeach
       </tbody>
-      
+
     </table>
 
 
-@include('layouts/footer')
+@include('layouts.footer')

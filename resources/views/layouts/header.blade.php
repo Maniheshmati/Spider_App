@@ -44,6 +44,13 @@
                 <li class="nav-item">
                     <a href="/catagory/" class="nav-link">Catagory</a>
                 </li>
+              <li class="nav-item">
+                  <a href="/permission/" class="nav-link">Permission</a>
+              </li>
+              <li class="nav-item">
+                  <a href="/roles/" class="nav-link">Roles</a>
+              </li>
+
 
 
           </ul>

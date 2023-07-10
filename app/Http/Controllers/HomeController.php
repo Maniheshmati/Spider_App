@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -21,8 +25,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function indexView()
     {
-        return view('home');
+        $user = Auth::user();
+        $permissions = $user->permissions;
+
+        $role = $user->roles->first->name;
+        return view('home', ['permissions' => $permissions, 'role' => $role]);
+    }
+    public function index(Request $request){
+        if($request){
+            Auth::logout();
+            return view('posts.posts');
+        }
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CatagoryController;
+use App\Http\Controllers\TrustController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,7 +63,7 @@ Route::get('/catagory', function(){
 Route::get('/catagories/create', [CatagoryController::class, 'createView'])->middleware('auth')->name('catagory.create');
 Route::post('/catagories/create', [CatagoryController::class, 'create'])->middleware('auth');
 
-Route::get('/posts/delete', [PostController::class, 'deleteView'])->middleware('auth');
+Route::get('/posts/delete', [PostController::class, 'deleteView'])->middleware('auth')->middleware(['permission:create-post']);
 Route::post('/posts/delete',  [PostController::class, 'delete'])->middleware('auth')->name('posts.delete');
 
 
@@ -86,10 +87,15 @@ Route::get('/search', [SearchController::class, 'search']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'indexView'])->name('home');
+Route::post('/home', [App\Http\Controllers\HomeController::class, 'index']);
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/users', [UserController::class, 'index']);
+Route::get('/users', [UserController::class, 'index'])->name('users');
+
+Route::get('/permission', [TrustController::class, 'permissionView'])->name('permission')->middleware('role:admin', 'role:owner');
+Route::post('/permission', [TrustController::class, 'permission']);
+
+Route::get('/roles', [TrustController::class, 'roleView'])->name('role')->middleware('role:admin', 'role:owner');
+Route::post('/roles', [TrustController::class, 'role']);
