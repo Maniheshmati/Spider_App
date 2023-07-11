@@ -36,6 +36,7 @@
     <a href="{{ route('posts.update', ['id' => $post->id]) }}"><button class="btn btn-primary">Update Post</button></a>
     <a href="{{ route('posts.delete', ['id' => $post->id]) }}"><button class="btn btn-primary">Delete Post</button></a>
     <a href="/"><button class="btn btn-primary">Search in posts</button></a>
+
       @endif
 </body>
 </html>

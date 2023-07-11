@@ -37,6 +37,10 @@
       </tbody>
     </table>
   </div>
+<form action="" method="post">
+    @csrf
+    <input type="submit" name="download" value="Download" class="btn btn-primary">
+</form>
 
 
 @include('layouts.footer')

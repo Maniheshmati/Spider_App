@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PostExport;
 use App\Models\Post;
 use App\Models\Catagory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PostController extends Controller
 {
@@ -66,20 +69,20 @@ public function edit($id)
 public function updateView(){
   return view('posts.update');
 }
+//
+//public function update(Request $request)
+//{
+//  $id = $request->route('id');
+//  if(Auth::user()->id == Post->user_id){
+//  $post = Post::findOrFail($id);
+//  $post->title = $request->input('title');
+//  $post->body = $request->input('body');
+//  $post->save();
+//
+//  return redirect('/posts');
+//  }
 
-public function update(Request $request)
-{
-  $id = $request->route('id');
-  if(Auth::user()->id == Post->user_id){
-  $post = Post::findOrFail($id);
-  $post->title = $request->input('title');
-  $post->body = $request->input('body');
-  $post->save();
-
-  return redirect('/posts');
-  }
-
-}
+//}
 public function deleteView(){
   return view('posts.delete');
 }
@@ -122,6 +125,11 @@ public function modifyPost(Request $request)
     return redirect()->back()->with('success', 'Post modified successfully.');
 }
 
+
+    public function exportToExcel(){
+       return Excel::download(new PostExport, 'posts.xlsx');
+
+    }
 }
 
 

@@ -30,7 +30,8 @@ Route::post('/users/login', [UserController::class, 'login']);
 
 route::get('/posts', function (){
     return view('posts.posts');
-});
+})->name('posts');
+route::post('/posts', [PostController::class, 'exportToExcel']);
 
 Route::get('/user/{username}', [UserController::class, 'show'])->name('user.profile');
 
@@ -99,3 +100,5 @@ Route::post('/permission', [TrustController::class, 'permission']);
 
 Route::get('/roles', [TrustController::class, 'roleView'])->name('role')->middleware('role:admin', 'role:owner');
 Route::post('/roles', [TrustController::class, 'role']);
+
+Route::get('/posts/download', [PostController::class, 'exportToExcel']);
