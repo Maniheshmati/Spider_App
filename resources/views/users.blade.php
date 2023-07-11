@@ -1,5 +1,5 @@
 @include('layouts.header')
-
+@inject("Role", 'App\Models\Role')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +19,7 @@
             <th>Name</th>
             <th>Username</th>
             <th>Email</th>
+              <th>Role</th>
           </tr>
         </thead>
         <tbody>

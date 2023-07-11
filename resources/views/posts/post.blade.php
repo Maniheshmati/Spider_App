@@ -31,7 +31,7 @@
         </tbody>
       </table>
       <br><br><br>
-      @if (Auth::user()->id == $post->user_id)
+      @if (Auth::user()->id == $post->user_id OR Auth::user()->hasRole('owner') OR Auth::user()->hasRole('admin'))
       <a href="{{ route('posts.create', ['id' => $post->id]) }}"><button class="btn btn-primary">Create Post</button></a>
     <a href="{{ route('posts.update', ['id' => $post->id]) }}"><button class="btn btn-primary">Update Post</button></a>
     <a href="{{ route('posts.delete', ['id' => $post->id]) }}"><button class="btn btn-primary">Delete Post</button></a>
