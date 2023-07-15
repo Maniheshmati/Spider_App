@@ -40,7 +40,7 @@ public function store(Request $request)
     $request->validate([
       'title' => 'bail|required|max:70',
       'body' => 'required',
-      'category' => 'required',
+      'category' => ['required', 'integer', ' exists:catagories,id'],
     ]);
 
     $user = Auth::user();
