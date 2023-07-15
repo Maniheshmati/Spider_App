@@ -11,14 +11,20 @@
 </head>
 
 <body>
-@error('title')
-<div class="alert alert-danger">{{ $message }}</div>
-@enderror
+    @error('title')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+    @error('body')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+    @error('category')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+
     <form action="" method="post">
-        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+        @csrf
         <label for="postTitle">Title</label>
         <input type="text" name="title" placeholder="Title" class="@error('title') is-invalid @enderror">
-
 
         {{--        <ul>--}}
 {{--        @foreach($errors->all() as $error)--}}
@@ -35,7 +41,6 @@
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         @endif
-        {{$errors->first('category')}}
         </select>
         <br>
         <input type="submit">
