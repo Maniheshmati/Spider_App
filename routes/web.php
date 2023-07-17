@@ -56,14 +56,14 @@ Route::get('/insertInfo', function(){
 
 });
 
-Route::get('/catagory', function(){
+Route::get('/category', function(){
     return view('categories.show');
-})->name('catagories.show');
+})->name('categories.show');
 
+Route::get('/categories/create', [CatagoryController::class, 'createView'])->middleware('auth')->name('catagory.create');
+Route::post('/categories/create', [CatagoryController::class, 'create'])->middleware('auth');
 
-Route::get('/catagories/create', [CatagoryController::class, 'createView'])->middleware('auth')->name('catagory.create');
-Route::post('/catagories/create', [CatagoryController::class, 'create'])->middleware('auth');
-
+Route::post('/category/delete', [CatagoryController::class, 'delete'])->middleware('auth')->name('category.delete');
 Route::get('/posts/delete', [PostController::class, 'deleteView'])->middleware('auth')->middleware(['permission:create-post']);
 Route::post('/posts/delete',  [PostController::class, 'delete'])->middleware('auth')->name('posts.delete');
 
@@ -95,10 +95,10 @@ Auth::routes();
 
 Route::get('/users', [UserController::class, 'index'])->name('users');
 
-Route::get('/permission', [TrustController::class, 'permissionView'])->name('permission')->middleware('role:admin', 'role:owner');
+Route::get('/permission', [TrustController::class, 'permissionView'])->name('permission')->middleware('role:owner');
 Route::post('/permission', [TrustController::class, 'permission']);
 
-Route::get('/roles', [TrustController::class, 'roleView'])->name('role')->middleware('role:admin', 'role:owner');
+Route::get('/roles', [TrustController::class, 'roleView'])->name('role')->middleware('role:owner');
 Route::post('/roles', [TrustController::class, 'role']);
 
 Route::get('/posts/download', [PostController::class, 'exportToExcel']);

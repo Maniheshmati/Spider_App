@@ -1,20 +1,25 @@
 @include('layouts.header')
-@inject('catagories', 'App\Models\Catagory')
-<a href="{{ route('catagories.show', $catagories->slug) }}">{{ $catagories->name }}</a>
-
+@inject('categories','App\Models\Catagory' )
 <table class="table">
     <thead>
       <tr>
         <th>ID</th>
         <th>Name</th>
+          <th>Operations</th>
 
       </tr>
     </thead>
     <tbody>
-      @foreach ($catagories::all() as $catagory)
+      @foreach ($categories::all() as $category)
         <tr>
-          <td><a href="/post/{{$catagory->id}}" class="nav-link"> {{ $catagory->id }}</a></td>
-          <td><a href="/catagory/{{$catagory->name}}" class="nav-link">{{ $catagory->name }}</a></td>
+          <td><a href="/category/{{$category->id}}" class="nav-link"> {{ $category->id }}</a></td>
+          <td><a href="/category/{{$category->name}}" class="nav-link">{{ $category->name }}</a></td>
+            <form method="Post" action="{{ route('category.delete') }}">
+                @csrf
+                <input type="hidden" name="id" value="{{ $category->id }}">
+                <td><input name="delete" type="submit" value="Delete" class="btn btn-primary"></td>
+            </form>
+
 
 
         </tr>

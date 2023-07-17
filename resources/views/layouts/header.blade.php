@@ -42,7 +42,7 @@
                     <a href="/users" class="nav-link">Users</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/catagory/" class="nav-link">Catagory</a>
+                    <a href="/category/" class="nav-link">Category</a>
                 </li>
               <li class="nav-item">
                   <a href="/permission/" class="nav-link">Permission</a>
