@@ -19,6 +19,11 @@
                 <input type="hidden" name="id" value="{{ $category->id }}">
                 <td><input name="delete" type="submit" value="Delete" class="btn btn-primary"></td>
             </form>
+            <form method="get" action="{{ route('category.update') }}">
+                @csrf
+                <input type="hidden" name="id" value="{{ $category->id }}">
+                <td><input name="update" type="submit" value="Update" class="btn btn-primary"> </td>
+            </form>
 
 
 

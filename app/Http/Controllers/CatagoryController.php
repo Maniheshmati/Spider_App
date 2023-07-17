@@ -24,5 +24,19 @@ class CatagoryController extends Controller
         $category->delete();
         return redirect(route('categories.show'));
     }
+
+    public function updateView(){
+        return view('categories.update');
+    }
+    public function update(Request $request){
+        $category = Catagory::findOrFail($request->id);
+        if($request->category_name){
+            $category->name = $request->category_name;
+            $category->save();
+            return redirect(route('categories.show'));
+
+        }
+
+    }
 }
 

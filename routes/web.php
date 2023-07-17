@@ -102,3 +102,6 @@ Route::get('/roles', [TrustController::class, 'roleView'])->name('role')->middle
 Route::post('/roles', [TrustController::class, 'role']);
 
 Route::get('/posts/download', [PostController::class, 'exportToExcel']);
+
+Route::get('/category/update', [CatagoryController::class, 'updateView'])->name('category.update');
+Route::post('/category/update', [CatagoryController::class, 'update']);
