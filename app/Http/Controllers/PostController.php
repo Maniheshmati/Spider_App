@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exceptions\PostNotFound;
 
 class PostController extends Controller
 {
@@ -19,15 +20,13 @@ class PostController extends Controller
 }
 
 public function show(){
-    $post = Post::where('id', request('id'))->first();
-    if($post){
-        return view('posts.post', ['post' => $post]);
-    }
-    else{
-        return view('home');
-    }
-
-}
+  try{
+    $post = Post::where('id', request('id'))->firstOrFail();
+    return view('posts.post', ['post' => $post]);
+  }
+  catch(\Exception $exception){
+    return abort(404);
+}}
 
 public function create()
 {
