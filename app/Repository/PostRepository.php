@@ -21,7 +21,7 @@ class PostRepository{
         try{
             $post = Post::all();
             return $post;
-        }   
+        }
         catch(\Exception $exception){
             return abort(404);
         }
@@ -47,7 +47,7 @@ class PostRepository{
 
     public function update($request)
     {
-        $post = Post::findOrFail($request->id)->update($request->all()); 
+        $post = Post::findOrFail($request->id)->update($request->all());
         return $post;
     }
 
@@ -56,4 +56,5 @@ class PostRepository{
         $post = Post::findOrFail($id)->delete();
       return $post;
     }
+
 }
