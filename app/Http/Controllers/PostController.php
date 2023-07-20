@@ -10,23 +10,25 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exceptions\PostNotFound;
+use App\Repository\PostRepository;
 
 class PostController extends Controller
 {
+  protected $postRepository;
+
+  public function __construct(PostRepository $postRepository){
+    $this->postRepository = $postRepository;
+  }
     public function index()
 {
-  $posts = Post::all();
+  $posts = $this->postRepository->index();
   return view('posts.index', compact('posts'));
 }
 
 public function show(){
-  try{
-    $post = Post::where('id', request('id'))->firstOrFail();
-    return view('posts.post', ['post' => $post]);
-  }
-  catch(\Exception $exception){
-    return abort(404);
-}}
+  $post = $this->postRepository->show();
+  return view('posts.post', compact('post'));
+}
 
 public function create()
 {
@@ -36,26 +38,7 @@ public function create()
 
 public function store(Request $request)
 {
-    $request->validate([
-      'title' => 'bail|required|max:70',
-      'body' => 'required',
-      'category' => ['required', 'integer', ' exists:catagories,id'],
-    ]);
-
-    $user = Auth::user();
-    $category = Catagory::find($request->category);
-
-    if (!$category) {
-        return redirect()->back()->with('error', 'Invalid category selected.');
-    }
-
-    Post::create([
-      'title' => $request->title,
-      'body' => $request->body,
-      'user_id' => $user->id,
-      'category_id' => $category->id,
-    ]);
-
+  $this->postRepository->store($request);
     return redirect('/posts');
   }
 
@@ -68,30 +51,17 @@ public function edit($id)
 public function updateView(){
   return view('posts.update');
 }
-//
-//public function update(Request $request)
-//{
-//  $id = $request->route('id');
-//  if(Auth::user()->id == Post->user_id){
-//  $post = Post::findOrFail($id);
-//  $post->title = $request->input('title');
-//  $post->body = $request->input('body');
-//  $post->save();
-//
-//  return redirect('/posts');
-//  }
-
-//}
+public function update(Request $request){
+  $this->postRepository->update($request);
+    return redirect('/posts');
+}
 public function deleteView(){
   return view('posts.delete');
 }
 
 public function delete(Request $request)
 {
-  $id = $request->input('id');
-  $post = Post::findOrFail($id);
-
-  $post->delete();
+  $this->postRepository->delete($request);
 
   return redirect('/posts');
 }

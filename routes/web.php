@@ -80,25 +80,25 @@ Route::get('/deleteInfo', function(){
 
 
 
-        return $e;
+
 
 });
 
 Route::get('/search', [SearchController::class, 'search']);
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'indexView'])->name('home');
 Route::post('/home', [App\Http\Controllers\HomeController::class, 'index']);
-Auth::routes();
+
 
 
 Route::get('/users', [UserController::class, 'index'])->name('users');
 
-Route::get('/permission', [TrustController::class, 'permissionView'])->name('permission')->middleware('role:owner');
+Route::get('/permission', [TrustController::class, 'permissionView'])->name('permission');
 Route::post('/permission', [TrustController::class, 'permission']);
 
-Route::get('/roles', [TrustController::class, 'roleView'])->name('role')->middleware('role:owner');
+Route::get('/roles', [TrustController::class, 'roleView'])->name('role');
 Route::post('/roles', [TrustController::class, 'role']);
 
 Route::get('/posts/download', [PostController::class, 'exportToExcel']);
