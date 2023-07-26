@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exceptions\PostNotFound;
 use App\Repository\PostRepository;
+use Mani\Posts\HandlePost;
 
 class PostController extends Controller
 {
@@ -25,9 +26,12 @@ class PostController extends Controller
   return view('posts.index', compact('posts'));
 }
 
-public function show(){
-  $post = $this->postRepository->show();
-  return view('posts.post', compact('post'));
+public function show(Request $request){
+  $post = new HandlePost;
+  $post_item = $post->show($request);
+
+  return view('posts.post', ['post' => $post_item]);
+
 }
 
 public function create()
@@ -38,8 +42,18 @@ public function create()
 
 public function store(Request $request)
 {
-  $this->postRepository->store($request);
+  $request->validate([
+    'title' => 'bail|required|max:70',
+    'body' => 'required',
+    'category' => ['required', 'integer', ' exists:catagories,id'],
+  ]);
+
+  $handlePost = new HandlePost();
+  $create = $handlePost->create($request);
+  
+    if($create){
     return redirect('/posts');
+    }
   }
 
 public function edit($id)

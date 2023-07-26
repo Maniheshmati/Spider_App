@@ -18,17 +18,17 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($posts::where('user_id', $user->id)->get() as $post)
+        @foreach ($post as $item)
         @php
-        $username = $user::find($post->user_id)->username;
+        $username = $user->username;
         @endphp
           <tr>
-            <td>{{$post->id}}</td>
+            <td>{{$item->id}}</td>
             <td>{{$username}}</td>
-            <td>{{$post->title}}</td>
-            <td>{{$post->body}}</td>
-            <td>{{$post->created_at}}</td>
-              <td>{{$post->updated_at}}</td>
+            <td>{{$item->title}}</td>
+            <td>{{$item->body}}</td>
+            <td>{{$item->created_at}}</td>
+              <td>{{$item->updated_at}}</td>
 
           </tr>
         @endforeach

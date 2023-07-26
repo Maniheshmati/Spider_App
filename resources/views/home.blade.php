@@ -1,6 +1,7 @@
-@extends('layouts.app')
+
 @include('layouts.header')
-@section('content')
+
+
 
 
 <div class="container">
@@ -42,7 +43,7 @@
 
     @endif
 @endif
-@endsection
+
 
 <form method="POST" action="">
     @csrf

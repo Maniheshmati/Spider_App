@@ -12,6 +12,8 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "maatwebsite/excel": "^3.1",
+        "mani/posts": "dev-main",
+        "mani/users": "dev-main",
         "santigarcor/laratrust": "^8.2"
     },
     "require-dev": {
@@ -55,6 +57,19 @@
             "dont-discover": []
         }
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../packages/mani/users"
+        },
+        {
+           "type": "path",
+            "url": "../packages/mani/posts"
+        }
+    ],
+
+
+
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",

@@ -1,11 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CatagoryController;
 use App\Http\Controllers\TrustController;
+use Mani\Users;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +28,7 @@ Route::get('/users/register', [UserController::class, 'createView']);
 Route::post('/users/register', [UserController::class, 'create']);
 
 Route::get('/users/login', [UserController::class, 'loginView']);
-Route::post('/users/login', [UserController::class, 'login']);
+Route::post('/users/login', [UserController::class, 'login'])->name('login');
 
 
 route::get('/posts', function (){

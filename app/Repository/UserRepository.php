@@ -2,28 +2,30 @@
 
 namespace App\Repository;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Mani\Users\HandleUser;
 use Mockery\Exception;
 
 class UserRepository
 {
 
     public function create($request){
-        try {
-            $request->validate([
-                'name' => 'required',
-                'username' => ['required', 'unique:users,username,NULL,id'],
-                'email' => ['required', 'unique:users', 'email'],
-                'password' => ['required', 'min:8'],
-            ]);
-            $user = User::create($request->validated());
-            auth()->login($user);
-            return redirect('posts')->withSuccess('You have registered');
-        }catch (Exception $exception){
-            return abort(400);
+        $request->validate([
+            'name' => 'required',
+            'username' => ['required', 'unique:users,username,NULL,id'],
+            'email' => ['required', 'unique:users', 'email'],
+            'password' => ['required', 'min:8'],
+        ]);
+        $register = new HandleUser();
+        $status = $register->register($request);
+        if($status == true){
+            return redirect()->route('posts')->with('success', 'User created successfully');
         }
-
+        else{
+            return abort(500);
+        }
     }
 
     public function login($request){
@@ -31,28 +33,15 @@ class UserRepository
             'username' => 'required',
             'password' => 'required',
         ]);
-
-        $credentials = $request->only('username', 'password');
-
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('posts')->withSuccess('You have logged in');
-        }
-
-        return redirect('login')->withSuccess('Invalid credentials');
-
-
+        $login = new HandleUser();
+        $login->login($request);
         }
 
         public function show(){
-            // Find the user by username in the database
-            $user = User::where('username', request('username'))->first();
-
-            // If the user is not found, redirect to a 404 page
-            if ($user) {
-                return view('profile', ['user' => $user, 'posts' => "App\Models\Post"]);
-            } else {
-                return view('404');
-            }
+        $user = new HandleUser();
+        $data = $user->show();
+        $post = Post::all()->where('user_id', $data->id);
+        return view('profile', ['user' => $data, 'post' => $post]);
         }
 
         public function index(){
@@ -62,8 +51,8 @@ class UserRepository
         }
 
         public function logout(){
-            $user = Auth::user();
-            Auth::logout();
+            $connection = new HandleUser();
+            $connection->logout();
         }
 
 
