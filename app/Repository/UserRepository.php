@@ -19,14 +19,16 @@ class UserRepository
             'password' => ['required', 'min:8'],
         ]);
         $register = new HandleUser();
-        $status = $register->register($request);
-        if($status == true){
-            return redirect()->route('posts')->with('success', 'User created successfully');
+        $response = $register->register($request);
+        if($response == "Successfully login"){
+            return redirect('/home');
         }
         else{
-            return abort(500);
+            return redirect('/users/register');
         }
-    }
+
+        }
+    
 
     public function login($request){
         $request->validate([
@@ -34,7 +36,13 @@ class UserRepository
             'password' => 'required',
         ]);
         $login = new HandleUser();
-        $login->login($request);
+        $response = $login->login($request);
+        if($response == "Successfully login"){
+            return redirect('/home');
+        }
+        else{
+            return redirect('/users/login');
+        }
         }
 
         public function show(){

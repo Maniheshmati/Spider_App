@@ -27,6 +27,7 @@ class UserController extends Controller
     public function create(RegisterRequest $request)
     {
         $this->userRepository->create($request);
+        return redirect('/home');
     }
 
     public function loginView()

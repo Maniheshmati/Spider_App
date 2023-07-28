@@ -41,20 +41,24 @@ public function create()
 }
 
 public function store(Request $request)
-{
-  $request->validate([
-    'title' => 'bail|required|max:70',
-    'body' => 'required',
-    'category' => ['required', 'integer', ' exists:catagories,id'],
-  ]);
+    {
+        $request->validate([
+            'title' => 'bail|required|max:70',
+            'body' => 'required',
+            'category' => ['required', 'integer', 'exists:catagories,id'],
+        ]);
 
-  $handlePost = new HandlePost();
-  $create = $handlePost->create($request);
-  
-    if($create){
-    return redirect('/posts');
+        $handlePost = new HandlePost();
+        $response = $handlePost->create($request);
+        if($response == 'Successfully created'){
+          return redirect('/posts');
+        }
+        else{
+          return redirect('/posts/create');
+        }
+
+
     }
-  }
 
 public function edit($id)
 {
