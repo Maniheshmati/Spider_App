@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8fd975fe654862d96a2553cb9b368c71",
+    "content-hash": "af6dfd44136e608397dae21d9fa905e5",
     "packages": [
         {
             "name": "brick/math",
@@ -2177,14 +2177,14 @@
         },
         {
             "name": "mani/posts",
-            "version": "dev-main",
+            "version": "dev-master",
             "dist": {
                 "type": "path",
-                "url": "../packages/mani/posts",
-                "reference": "aa8efc59a60b15ee8ed0139c7659a89b9ab6c76a"
+                "url": "package/mani/posts",
+                "reference": "d1f4e247a73840159ebafca44c46688e2789576e"
             },
             "require": {
-                "laravel/framework": "10.x"
+                "laravel/framework": "^10.10"
             },
             "type": "library",
             "autoload": {
@@ -2201,35 +2201,7 @@
                     "email": "maniheshmati1385@gmail.com"
                 }
             ],
-            "description": "Posts section of Post management webiste",
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "mani/users",
-            "version": "dev-main",
-            "dist": {
-                "type": "path",
-                "url": "../packages/mani/users",
-                "reference": "9d1905bafe35da2862eb03baeb560aa17c64d19c"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Mani\\Users\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Maniheshmati",
-                    "email": "maniheshmati1385@gmail.com"
-                }
-            ],
-            "description": "Users Packge for Post Manager",
+            "description": "Posts section of Post management website",
             "transport-options": {
                 "relative": true
             }
@@ -8705,8 +8677,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "mani/posts": 20,
-        "mani/users": 20
+        "mani/posts": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

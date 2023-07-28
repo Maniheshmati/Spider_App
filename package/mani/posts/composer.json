@@ -1,0 +1,20 @@
+{
+    "name": "mani/posts",
+    "description": "Posts section of Post management website",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mani\\Posts\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Maniheshmati",
+            "email": "maniheshmati1385@gmail.com"
+        }
+    ],
+    "require": {
+        "laravel/framework": "^10.10"
+    },
+    "minimum-stability": "dev"
+}
