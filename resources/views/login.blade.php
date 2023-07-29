@@ -2,8 +2,8 @@
 
 <div class="container">
     <h1>Login</h1>
-    <form action="" method="post">
-      <input type="hidden" name="_token" value="<?php echo csrf_token() ?>">
+    <form action="" method="post" >
+      @csrf
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
         <input type="text" class="form-control" id="username" name="username" required>

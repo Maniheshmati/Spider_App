@@ -1,0 +1,20 @@
+{
+    "name": "mani/users",
+    "description": "Users Packge for Post Manager",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mani\\Users\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Maniheshmati",
+            "email": "maniheshmati1385@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "laravel/framework": "^10.10"
+    }
+}
