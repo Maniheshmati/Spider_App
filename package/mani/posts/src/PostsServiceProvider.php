@@ -14,5 +14,5 @@ public function register(){
             $this->app->bind('Mani\Posts', function ($app) {
             return new HandleCategory();
                         });
-}
+    }
 }

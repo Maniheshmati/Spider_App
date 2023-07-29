@@ -1,46 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
 @include('layouts.header')
 @inject('posts', 'App\Models\Post')
 @inject('users', 'App\Models\User')
-@inject('catagories', 'App\Models\Catagory')
-<div class="container">
+@inject('categories', 'App\Models\Catagory')
 
-    <h1>Posts</h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>User</th>
-          <th>Catagory</th>
-          <th>Title</th>
-          <th>Text</th>
-            <th>Created at</th>
-            <th>Updated at</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach ($posts::all() as $post)
-        @php
-        $username = $users::find($post->user_id)->username;
-        $catagory = $catagories::find($post->category_id)->name;
-        @endphp
-          <tr>
-            <td><a href="/post/{{$post->id}}" class="nav-link"> {{ $post->id }}</a></td>
-            <td><a href="/post/{{$post->id}}" class="nav-link">{{ $username }}</a></td>
-            <td><a href="/catagory/{{$catagory}}" class="nav-link">{{ $catagory }}</a></td>
-            <td><a href="/post/{{$post->id}}" class="nav-link">{{ $post->title }}</a></td>
-            <td><a href="/post/{{$post->id}}" class="nav-link">{{ $post->body}}</a></td>
-            <td><a href="/post/{{$post->id}}" class="nav-link">{{$post->created_at }}</a></td>
-              <td><a href="/post/{{$post->id}}" class="nav-link">{{ $post->updated_at }}</a></td>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spider-Man Help Requests</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom Spider-Man theme styles */
+        .spiderman-bg {
+            background-image: url('https://example.com/spiderman-bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
 
-          </tr>
-        @endforeach
-      </tbody>
-    </table>
-  </div>
-<form action="" method="post">
-    @csrf
-    <input type="submit" name="download" value="Download" class="btn btn-primary">
-</form>
+        .spiderman-title {
+            color: #d83c3c;
+        }
 
+        .spiderman-card {
+            border-color: #d83c3c;
+        }
 
-@include('layouts.footer')
+        .spiderman-btn {
+            background-color: #d83c3c;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 font-sans">
+    <!-- Header -->
+    <header class="bg-red-600 py-4 spiderman-bg">
+        <div class="container mx-auto text-center text-white">
+            <h1 class="text-3xl font-bold spiderman-title" style="color: white;">Spider-Man Help Requests</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto my-8">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            @foreach ($posts::all() as $post)
+            <div class="bg-white rounded-lg shadow-md p-4 spiderman-card">
+                <h2 class="text-xl font-semibold mb-2">{{ $post->title }}</h2>
+                <p class="text-gray-600 mb-4">{{ $post->body }}</p>
+                <p class="text-gray-500 text-sm">Posted by {{ $post->user->username }} - {{ $post->created_at->diffForHumans() }}</p>
+            </div>
+            @endforeach
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-4 text-white text-center">
+        <p>&copy; {{ date('Y') }} Spider-Man Help Requests</p>
+    </footer>
+</body>
+
+</html>

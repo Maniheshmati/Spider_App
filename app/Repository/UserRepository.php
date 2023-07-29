@@ -46,10 +46,7 @@ class UserRepository
         }
 
         public function show(){
-        $user = new HandleUser();
-        $data = $user->show();
-        $post = Post::all()->where('user_id', $data->id);
-        return view('profile', ['user' => $data, 'post' => $post]);
+
         }
 
         public function index(){
