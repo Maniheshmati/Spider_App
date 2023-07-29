@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\PostExport;
 use App\Models\Post;
+use App\Models\Comment;
 use App\Models\Catagory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,8 @@ class PostController extends Controller
 
 public function show(Request $request){
   $post = $this->post->show($request);
-  return view('posts.post', ['post' => $post]);
+  $comments = Comment::where('post_id', $request->id)->orderBy('created_at', 'desc')->get();
+  return view('posts.post', ['post' => $post, 'comments' => $comments]);
 
 }
 
@@ -62,7 +64,7 @@ public function updateView(){
   return view('posts.update');
 }
 public function update(Request $request){
-  $this->postRepository->update($request);
+  $this->post->update($request);
     return redirect('/posts');
 }
 public function deleteView(){
@@ -71,7 +73,7 @@ public function deleteView(){
 
 public function delete(Request $request)
 {
-  $this->postRepository->delete($request);
+  $this->post->delete($request);
 
   return redirect('/posts');
 }
@@ -109,6 +111,7 @@ public function modifyPost(Request $request)
        return Excel::download(new PostExport, 'posts.xlsx');
 
     }
+    
 }
 
 

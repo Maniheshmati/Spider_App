@@ -4,6 +4,7 @@ namespace Mani\Posts;
 
 use App\Models\Post;
 use App\Models\Catagory;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route; // Import the Route facade
@@ -32,10 +33,24 @@ class HandlePost
 
         return true;
     }
+    public function delete($request){
+        $id = $request->input('id');
+        $post = Post::findOrFail($id)->delete();
+      return $post;
+    }
+
+    public function update($request){
+        $post = Post::findOrFail($request->id)->update($request->all());
+        return $post;
+    }
 
     public function show($request)
     {
         $post = Post::where('id', $request->id)->firstOrFail();
         return $post;
+    }
+    public function getComments($request){
+        $comments = Comment::where('post_id', $request->id)->orderBy('created_at', 'desc')->get();
+        return $comments;
     }
 }

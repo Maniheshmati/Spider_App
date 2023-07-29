@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CatagoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TrustController;
 use Mani\Users;
 
@@ -39,6 +40,7 @@ route::post('/posts', [PostController::class, 'exportToExcel']);
 Route::get('/user/{username}', [UserController::class, 'show'])->name('user.profile');
 
 Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
+Route::post('/post/{id}', [CommentController::class, 'store'])->name('comment.store');
 Route::get('/search/{id}', function ($id){
     $posts = App\Models\Post::where('id', $id)->get();
 

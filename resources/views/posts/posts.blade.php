@@ -42,10 +42,13 @@
 
     <!-- Main Content -->
     <main class="container mx-auto my-8">
+        @php
+        $reversedPosts = $posts::all()->sortByDesc('created_at');
+    @endphp
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            @foreach ($posts::all() as $post)
+            @foreach ($reversedPosts as $post)
             <div class="bg-white rounded-lg shadow-md p-4 spiderman-card">
-                <h2 class="text-xl font-semibold mb-2">{{ $post->title }}</h2>
+                <h2 class="text-xl font-semibold mb-2"><a href="/post/{{ $post->id }}">{{ $post->title }}</a></h2>
                 <p class="text-gray-600 mb-4">{{ $post->body }}</p>
                 <p class="text-gray-500 text-sm">Posted by {{ $post->user->username }} - {{ $post->created_at->diffForHumans() }}</p>
             </div>
