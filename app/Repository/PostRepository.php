@@ -13,13 +13,10 @@ class PostRepository{
 
     }
     public function index(){
-        try{
+
             $post = Post::all();
             return $post;
-        }
-        catch(\Exception $exception){
-            return abort(404);
-        }
+        
     }
     public function store($request){
 

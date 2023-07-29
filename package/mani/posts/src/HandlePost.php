@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Route; // Import the Route facade
 
 class HandlePost
 {
+    public function index(){
+            $post = Post::all();
+            return $post;
+    }
     public function create($request)
     {
         $user = Auth::user();
@@ -26,7 +30,7 @@ class HandlePost
             'category_id' => $category->id,
         ]);
 
-        return "Successfully created";
+        return true;
     }
 
     public function show($request)

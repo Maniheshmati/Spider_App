@@ -11,6 +11,8 @@ public function boot()
     // Boot
 }
 public function register(){
-    // Register
+            $this->app->bind('Mani\Posts', function ($app) {
+            return new HandleCategory();
+                        });
 }
 }

@@ -15,22 +15,15 @@ use Mani\Posts\HandlePost;
 
 class PostController extends Controller
 {
-  protected $postRepository;
+  protected $post;
 
-  public function __construct(PostRepository $postRepository){
-    $this->postRepository = $postRepository;
+  public function __construct(HandlePost $post){
+    $this->post = $post;
   }
-    public function index()
-{
-  $posts = $this->postRepository->index();
-  return view('posts.index', compact('posts'));
-}
 
 public function show(Request $request){
-  $post = new HandlePost;
-  $post_item = $post->show($request);
-
-  return view('posts.post', ['post' => $post_item]);
+  $post = $this->post->show($request);
+  return view('posts.post', ['post' => $post]);
 
 }
 
@@ -48,13 +41,12 @@ public function store(Request $request)
             'category' => ['required', 'integer', 'exists:catagories,id'],
         ]);
 
-        $handlePost = new HandlePost();
-        $response = $handlePost->create($request);
-        if($response == 'Successfully created'){
-          return redirect('/posts');
+        $response = $this->post->create($request);
+        if($response == true){
+          return redirect()->route('posts');
         }
         else{
-          return redirect('/posts/create');
+          return redirect()->route('posts.create');
         }
 
 
