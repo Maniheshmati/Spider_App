@@ -38,6 +38,7 @@ route::get('/posts', function (){
 route::post('/posts', [PostController::class, 'exportToExcel']);
 
 Route::get('/user/{username}', [UserController::class, 'show'])->name('user.profile');
+Route::post('/user/{username}', [UserController::class, 'delete'])->name('user.delete');
 
 Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
 Route::post('/post/{id}', [CommentController::class, 'store'])->name('comment.store');

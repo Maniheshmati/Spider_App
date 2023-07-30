@@ -85,10 +85,19 @@
             </div>
             @endforeach
         </div>
+        
     </main>
 
     <!-- Footer -->
     <footer class="bg-gray-800 py-4 text-white text-center">
+        @if (Auth::check() && Auth::user()->id == $user->id)
+        <form method="POST">
+            @csrf
+            <input type="hidden" value="{{ $user->id }}" name="id">
+            <input type="submit" class="btn btn-danger" value="Delete User">
+        </form>
+            
+        @endif
         <p>&copy; {{ date('Y') }} Spider-Man Help Requests</p>
     </footer>
 </body>

@@ -45,8 +45,7 @@ class UserController extends Controller
 
     public function show()
     {
-        $user = new HandleUser();
-        $data = $user->show();
+        $data = $this->userRepository->show();
         $user = User::where('username', request('username'))->first();
         $posts = Post::all()->where('user_id', $user->id);
         return view('profile', ['user' => $user, 'posts' => $posts]);
@@ -59,6 +58,13 @@ class UserController extends Controller
     }
     public function logout(){
         $this->userRepository->logout();
+    }
+    public function delete(Request $request){
+        $response = $this->userRepository->delete($request->id);
+        if($response == true){
+            return redirect()->route('users');
+        }
+        
     }
 
 }

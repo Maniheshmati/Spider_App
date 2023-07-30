@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +61,17 @@ class UserRepository
             $connection->logout();
         }
 
+        public function delete($id){
+            Auth::logout();
 
+            $comments = Comment::where('user_id', $id)->delete();
+
+            $posts = Post::where('user_id', $id)->delete();
+
+            $user = User::find($id)->delete();
+            
+            return true;
+
+        }
     }
 
