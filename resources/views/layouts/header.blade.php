@@ -26,9 +26,9 @@
               <a href="/" class="nav-link">Search</a>
             </li>
 
-                @if (Auth::check()){
+                @if (Auth::check())
                     <a href="/home" class="nav-link">Dashboard</a>
-                }
+                
                 @else
                 <li class="nav-item">
                     <a href="/users/login" class="nav-link">Login</a>
