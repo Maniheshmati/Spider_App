@@ -1,12 +1,13 @@
 @include('layouts.header')
-@inject('User','App\Models\User')
+@inject('User', 'App\Models\User')
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{$post->title}}</title>
+    <title>{{ $post->title }}</title>
     <style>
         /* Add your custom styles here */
 
@@ -91,52 +92,60 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="post-card">
-            <div class="post-title">{{$post->title}}</div>
-            <div class="post-body">{{$post->body}}</div>
+            <div class="post-title">{{ $post->title }}</div>
+            <div class="post-body">{{ $post->body }}</div>
         </div>
 
         @if (auth()->check())
-        @if (Auth::user()->id == $post->user_id OR Auth::user()->hasRole('owner') OR Auth::user()->hasRole('admin'))
-            <div class="actions-container">
-                <a href="{{ route('posts.create', ['id' => $post->id]) }}" class="action-btn action-btn-primary">Create Post</a>
-                <a href="{{ route('posts.update', ['id' => $post->id]) }}" class="action-btn action-btn-primary">Update Post</a>
-                <a href="{{ route('posts.delete', ['id' => $post->id]) }}" class="action-btn action-btn-primary">Delete Post</a>
-                <a href="/" class="action-btn action-btn-primary">Search in posts</a>
-            </div>
+            @if (Auth::user()->id == $post->user_id or Auth::user()->hasRole('owner') or Auth::user()->hasRole('admin'))
+                <div class="actions-container">
+                    <a href="{{ route('posts.create', ['id' => $post->id]) }}"
+                        class="action-btn action-btn-primary">Create Post</a>
+                    <a href="{{ route('posts.update', ['id' => $post->id]) }}"
+                        class="action-btn action-btn-primary">Update Post</a>
+                    <a href="{{ route('posts.delete', ['id' => $post->id]) }}"
+                        class="action-btn action-btn-primary">Delete Post</a>
+                </div>
+            @endif
         @endif
-    @endif
-    
-        
-        
-            @if (Auth::check())
+
+
+
+        @if (Auth::check())
             <form method="POST">
                 @csrf
                 <label for="body" class="label">Comment:</label>
                 <textarea name="body" class="form-control" required></textarea>
-                <input type="hidden" name="post_id" value="{{$post->id}}">
+                <input type="hidden" name="post_id" value="{{ $post->id }}">
                 <input type="submit" value="Comment" class="action-btn action-btn-primary">
             </form>
-            @endif
+        @endif
 
         <h2>Comments</h2>
         @php
-        $reversedComments = array_reverse($post->comments->toArray());
+            $reversedComments = array_reverse($post->comments->toArray());
         @endphp
         @foreach ($reversedComments as $comment)
-        @php
-            $user = $User::where('id', $comment['user_id'])->first();
-            $commentTime = \Carbon\Carbon::parse($comment['created_at'])->diffForHumans();
+            @php
+                $user = $User::where('id', $comment['user_id'])->first();
+                $commentTime = \Carbon\Carbon::parse($comment['created_at'])->diffForHumans();
+            @endphp
 
-        @endphp
             <div class="comment-card">
-                <div class="comment-author">{{ $user->name }}</div>
+                @if (Auth::check() && Auth::user()->id == $user->id)
+                    <div class="comment-author">You</div>
+                @else
+                    <div class="comment-author">{{ $user->name }}</div>
+                @endif
                 <div class="comment-body">{{ $comment['body'] }}</div>
                 <div class="comment-time">{{ $commentTime }}</div>
             </div>
         @endforeach
     </div>
 </body>
+
 </html>
