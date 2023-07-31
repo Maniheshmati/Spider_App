@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -8,7 +7,6 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CatagoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TrustController;
-use Mani\Users;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,13 +22,16 @@ use Mani\Users;
 Route::get('/', function () {
     return view('search');
 });
-
+# Users
 Route::get('/users/register', [UserController::class, 'createView']);
 Route::post('/users/register', [UserController::class, 'create']);
 
 Route::get('/users/login', [UserController::class, 'loginView']);
 Route::post('/users/login', [UserController::class, 'login'])->name('login');
 
+Route::get('/users', [UserController::class, 'index'])->name('users');
+
+# Posts
 
 route::get('/posts', function (){
     return view('posts.posts');
@@ -43,18 +44,16 @@ Route::post('/user/{username}', [UserController::class, 'delete'])->name('user.d
 Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
 Route::post('/post/{id}', [CommentController::class, 'store'])->name('comment.store');
 
-
 Route::get('posts/create', [PostController::class, 'create'])->middleware('auth');
 Route::post('posts/create', [PostController::class, 'store'])->middleware('auth')->name('posts.create');
 
-Route::get('/insertInfo', function(){
-        $post = new App\Models\Post();
-        $post->title = $_GET['postTitle'];
-        $post->body = $_GET['postBody'];
-        $post->save();
-        return view('posts.posts');
+Route::get('/posts/delete', [PostController::class, 'deleteView'])->middleware('auth')->middleware(['permission:create-post']);
+Route::post('/posts/delete',  [PostController::class, 'delete'])->middleware('auth')->name('posts.delete');
 
-});
+Route::get('/post/{id}/update', [PostController::class, 'updateView'])->middleware('auth');
+Route::post('/post/{id}/update', [PostController::class, 'update'])->middleware('auth')->name('posts.update');
+
+# Categories
 
 Route::get('/category', function(){
     return view('categories.show');
@@ -64,44 +63,29 @@ Route::get('/categories/create', [CatagoryController::class, 'createView'])->mid
 Route::post('/categories/create', [CatagoryController::class, 'create'])->middleware('auth');
 
 Route::post('/category/delete', [CatagoryController::class, 'delete'])->middleware('auth')->name('category.delete');
-Route::get('/posts/delete', [PostController::class, 'deleteView'])->middleware('auth')->middleware(['permission:create-post']);
-Route::post('/posts/delete',  [PostController::class, 'delete'])->middleware('auth')->name('posts.delete');
 
+Route::get('/category/update', [CatagoryController::class, 'updateView'])->name('category.update');
+Route::post('/category/update', [CatagoryController::class, 'update']);
 
-Route::get('/post/{id}/update', [PostController::class, 'updateView'])->middleware('auth');
-Route::post('/post/{id}/update', [PostController::class, 'update'])->middleware('auth')->name('posts.update');
-
-Route::get('/deleteInfo', function(){
-
-
-        $post = App\Models\Post::find($_GET['id']);
-        $post->delete();
-        return view('posts.posts');
-
-
-
-
-
-});
+#Search
 
 Route::get('/search', [SearchController::class, 'search']);
 
-
+# Dashboard
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'indexView'])->name('home');
 Route::post('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 
+#Permissions and Roles
 
-Route::get('/users', [UserController::class, 'index'])->name('users');
-
-Route::get('/permission', [TrustController::class, 'permissionView'])->name('permission');
+Route::get('/permission', [TrustController::class, 'permissionView'])->name('permission')->middleware('permission:create-post');
 Route::post('/permission', [TrustController::class, 'permission']);
 
-Route::get('/roles', [TrustController::class, 'roleView'])->name('role');
+Route::get('/roles', [TrustController::class, 'roleView'])->name('role')->middleware('permission:create-post')->middleware('role:owner');
 Route::post('/roles', [TrustController::class, 'role']);
+
+# Files Operations
 
 Route::get('/posts/download', [PostController::class, 'exportToExcel']);
 
-Route::get('/category/update', [CatagoryController::class, 'updateView'])->name('category.update');
-Route::post('/category/update', [CatagoryController::class, 'update']);
