@@ -14,39 +14,34 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        Permission::updateOrCreate([
+        Permission::createPermission([
             'name' => 'create-post',
             'display_name' => 'Create Post',
             'description' => "Create a Post",
         ]);
-        Permission::updateOrCreate([
+        Permission::createPermission([
             'name' => 'delete-post',
             'display_name' => 'Delete Post',
             'description' => 'Delete existing posts',
         ]);
-        Permission::updateOrCreate([
-            'name' => 'update-post',
-            'display_name' => 'Update Post',
-            'description' => 'Update existing posts',
-        ]);
-        $this->call(PermissionSeeder::class);
-        Permission::updateOrCreate([
+
+        Permission::createPermission([
             'name' => 'edit-user',
             'display_name' => 'Edit User',
             'description' => 'Edit existing users',
         ]);
-        $this->call(PermissionSeeder::class);
-                Permission::updateOrCreate([
+
+        Permission::createPermission([
             'name' => 'create-user',
             'display_name' => 'Create user',
             'description' => "Create a User",
         ]);
-        Permission::updateOrCreate([
+        Permission::createPermission([
             'name' => 'delete-user',
             'display_name' => 'Delete User',
             'description' => 'Delete existing Users',
         ]);
-        Permission::updateOrCreate([
+        Permission::createPermission([
             'name' => 'update-user',
             'display_name' => 'Update User',
             'description' => 'Update existing Users',

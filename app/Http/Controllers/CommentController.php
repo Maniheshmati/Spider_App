@@ -19,6 +19,7 @@ class CommentController extends Controller
                      'is_done' => 1
                 ]);
                 $post->save;
+            }
         else{
                         
             $post = new Post();
@@ -30,7 +31,6 @@ class CommentController extends Controller
                 $post->save;
         }
 
-        }
         if($request->body != null){
             Comment::create([
                 'body' => $request->body,
@@ -38,7 +38,8 @@ class CommentController extends Controller
                 'user_id' => auth()->user()->id
             ]);
             return redirect('/post/' . $request->id);
+        }
 
         }
     }
-}
+
