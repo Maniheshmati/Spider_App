@@ -48,12 +48,14 @@
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             @foreach ($reversedPosts as $post)
             <div class="bg-white rounded-lg shadow-md p-4 spiderman-card">
+                @if ($post->is_done == true)
+                    <p class="text-gray-500 text-sm">✅</p>
+                    @else
+                    <p class="text-gray-500 text-sm">🤟🤟</p>
+                    @endif
                 <h2 class="text-xl font-semibold mb-2"><a href="/post/{{ $post->id }}">{{ $post->title }}</a></h2>
                 <p class="text-gray-600 mb-4">{{ $post->body }}</p>
                 <p class="text-gray-500 text-sm">Posted by {{ $post->user->username }} - {{ $post->created_at->diffForHumans() }}</p>
-                @if ($post->is_done == true)
-                    <p class="text-gray-500 text-sm">Done</p>
-                    @endif
             </div>
             @endforeach
         </div>

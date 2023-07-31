@@ -11,7 +11,7 @@ class SearchController extends Controller
 {
     $posts = Post::where('title', 'like', '%' . $request->search . '%')->orWhere('body', 'like', '%' . $request->search . '%')->get();
     $users = User::where('name', 'like', '%' . $request->search . '%')->get();
-
+    
     return view('posts.search', ['posts' => $posts, 'users' => $users]);
 }
 }

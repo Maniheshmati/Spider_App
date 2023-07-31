@@ -98,6 +98,8 @@
         <div class="post-card">
             <form method="POST">
                 @csrf
+                @if (Auth::check())
+                    
                 @if (Auth::user()->username == 'peter')
                     @if($post->is_done == false)
                     <label for="checkBox">Check</label>
@@ -105,6 +107,7 @@
                     @else
                     <h5>Done</h5>
                     @endif
+                @endif
                 @endif
             <div class="post-title">{{ $post->title }}</div>
             <div class="post-body">{{ $post->body }}</div>

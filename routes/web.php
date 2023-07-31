@@ -42,13 +42,7 @@ Route::post('/user/{username}', [UserController::class, 'delete'])->name('user.d
 
 Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
 Route::post('/post/{id}', [CommentController::class, 'store'])->name('comment.store');
-Route::get('/search/{id}', function ($id){
-    $posts = App\Models\Post::where('id', $id)->get();
 
-    foreach ($posts as $post){
-        echo $post->title;
-    }
-});
 
 Route::get('posts/create', [PostController::class, 'create'])->middleware('auth');
 Route::post('posts/create', [PostController::class, 'store'])->middleware('auth')->name('posts.create');
