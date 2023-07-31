@@ -96,6 +96,16 @@
 <body>
     <div class="container">
         <div class="post-card">
+            <form method="POST">
+                @csrf
+                @if (Auth::user()->username == 'peter')
+                    @if($post->is_done == false)
+                    <label for="checkBox">Check</label>
+                    <input type="checkbox" name="checkBox" value="{{ $post->id }}">
+                    @else
+                    <h5>Done</h5>
+                    @endif
+                @endif
             <div class="post-title">{{ $post->title }}</div>
             <div class="post-body">{{ $post->body }}</div>
         </div>
@@ -116,12 +126,10 @@
 
 
         @if (Auth::check())
-            <form method="POST">
-                @csrf
                 <label for="body" class="label">Comment:</label>
-                <textarea name="body" class="form-control" required></textarea>
+                <textarea name="body" class="form-control"></textarea>
                 <input type="hidden" name="post_id" value="{{ $post->id }}">
-                <input type="submit" value="Comment" class="action-btn action-btn-primary">
+                <input type="submit" value="Submit" class="action-btn action-btn-primary">
             </form>
         @endif
 

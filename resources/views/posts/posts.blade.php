@@ -51,6 +51,9 @@
                 <h2 class="text-xl font-semibold mb-2"><a href="/post/{{ $post->id }}">{{ $post->title }}</a></h2>
                 <p class="text-gray-600 mb-4">{{ $post->body }}</p>
                 <p class="text-gray-500 text-sm">Posted by {{ $post->user->username }} - {{ $post->created_at->diffForHumans() }}</p>
+                @if ($post->is_done == true)
+                    <p class="text-gray-500 text-sm">Done</p>
+                    @endif
             </div>
             @endforeach
         </div>
