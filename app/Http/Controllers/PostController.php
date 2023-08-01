@@ -56,8 +56,9 @@ public function edit($id)
   return view('posts.edit', compact('post'));
 }
 
-public function updateView(){
-  return view('posts.update');
+public function updateView(Request $request){
+    $post = Post::find($request->id);
+  return view('posts.update', ['post' => $post]);
 }
 public function update(Request $request){
   $this->post->update($request);

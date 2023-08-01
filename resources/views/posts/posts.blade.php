@@ -12,11 +12,10 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
     <style>
         /* Custom Spider-Man theme styles */
-        .spiderman-bg {
-            background-image: url('https://example.com/spiderman-bg.jpg');
-            background-size: cover;
-            background-position: center;
-        }
+        /* Custom Spider-Man theme styles */
+
+
+        /* ... (other styles remain unchanged) ... */
 
         .spiderman-title {
             color: #d83c3c;
@@ -29,10 +28,19 @@
         .spiderman-btn {
             background-color: #d83c3c;
         }
+        body{
+            background-image: url('https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?cs=srgb&dl=pexels-lukas-kloeppel-466685.jpg&fm=jpg');
+            background-size: cover;
+
+
+
+        }
+
     </style>
 </head>
 
 <body class="bg-gray-100 font-sans">
+
     <!-- Header -->
     <header class="bg-red-600 py-4 spiderman-bg">
         <div class="container mx-auto text-center text-white">
@@ -41,7 +49,8 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto my-8">
+    <main class="container mx-auto my-8"> 
+
         @php
         $reversedPosts = $posts::all()->sortByDesc('created_at');
     @endphp
@@ -61,10 +70,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 py-4 text-white text-center">
-        <p>&copy; {{ date('Y') }} Spider-Man Help Requests</p>
-    </footer>
+
 </body>
 
 </html>

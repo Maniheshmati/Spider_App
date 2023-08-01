@@ -84,6 +84,9 @@
                 <p class="text-gray-500 text-sm">Posted by {{ $post->user->username }} - {{ $post->created_at->diffForHumans() }}</p>
             </div>
             @endforeach
+            @if(count($posts) == 0)
+            <h1>No posts yet</p>
+            @endif
         </div>
         
     </main>

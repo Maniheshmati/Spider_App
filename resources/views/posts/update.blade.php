@@ -15,10 +15,10 @@
 
         <br>
         <label for="postTitle">Title: </label>
-        <input type="text" name="title" placeholder="Post Title">
+        <input type="text" name="title" placeholder="Post Title" value="{{ $post->title }}">
         <br>
         <label for="postBody">Body: </label>
-        <textarea name="body" id="body" cols="30" rows="10" placeholder="Post Body"></textarea>
+        <textarea name="body" id="body" cols="30" rows="10" >{{ $post->body }}</textarea>
         <br>
         <input type="submit">
     </form>
