@@ -7,11 +7,7 @@ use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Catagory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exceptions\PostNotFound;
-use App\Repository\PostRepository;
 use Mani\Posts\HandlePost;
 
 class PostController extends Controller

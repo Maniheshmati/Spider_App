@@ -47,7 +47,7 @@ Route::post('/post/{id}', [CommentController::class, 'store'])->name('comment.st
 Route::get('posts/create', [PostController::class, 'create'])->middleware('auth');
 Route::post('posts/create', [PostController::class, 'store'])->middleware('auth')->name('posts.create');
 
-Route::get('/posts/delete', [PostController::class, 'deleteView'])->middleware('auth')->middleware(['permission:create-post']);
+Route::get('/posts/delete', [PostController::class, 'deleteView'])->middleware('auth');
 Route::post('/posts/delete',  [PostController::class, 'delete'])->middleware('auth')->name('posts.delete');
 
 Route::get('/post/{id}/update', [PostController::class, 'updateView'])->middleware('auth');
