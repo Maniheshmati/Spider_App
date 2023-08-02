@@ -73,5 +73,11 @@ class UserRepository
             return true;
 
         }
+
+        public function update($request){
+            $connection = new HandleUser();
+            $response = $connection->update($request);
+            return true;
+        }
     }
 

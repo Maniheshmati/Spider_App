@@ -7,6 +7,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CatagoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TrustController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,9 @@ Route::post('/users/register', [UserController::class, 'create']);
 Route::get('/users/login', [UserController::class, 'loginView']);
 Route::post('/users/login', [UserController::class, 'login'])->name('login');
 
+Route::get('/user/{id}/update', [UserController::class, 'updateView'])->middleware('auth');
+Route::post('/user/{id}/update', [UserController::class, 'update'])->middleware('auth');
+
 Route::get('/users', [UserController::class, 'index'])->name('users');
 
 # Posts
@@ -47,8 +51,8 @@ Route::post('/post/{id}', [CommentController::class, 'store'])->name('comment.st
 Route::get('posts/create', [PostController::class, 'create'])->middleware('auth');
 Route::post('posts/create', [PostController::class, 'store'])->middleware('auth')->name('posts.create');
 
-Route::get('/posts/delete', [PostController::class, 'deleteView'])->middleware('auth');
-Route::post('/posts/delete',  [PostController::class, 'delete'])->middleware('auth')->name('posts.delete');
+Route::get('/post/{id}/delete', [PostController::class, 'deleteView'])->middleware('auth');
+Route::post('/post/{id}/delete',  [PostController::class, 'delete'])->middleware('auth')->name('posts.delete');
 
 Route::get('/post/{id}/update', [PostController::class, 'updateView'])->middleware('auth');
 Route::post('/post/{id}/update', [PostController::class, 'update'])->middleware('auth')->name('posts.update');
@@ -89,3 +93,5 @@ Route::post('/roles', [TrustController::class, 'role']);
 
 Route::get('/posts/download', [PostController::class, 'exportToExcel']);
 
+# Admin panel 
+Route::get('/admin', [AdminController::class, 'panelView']);

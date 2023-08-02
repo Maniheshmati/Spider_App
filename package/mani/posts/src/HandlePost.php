@@ -34,8 +34,7 @@ class HandlePost
         return true;
     }
     public function delete($request){
-        $id = $request->input('id');
-        $post = Post::findOrFail($id)->delete();
+        $post = Post::findOrFail($request->id)->delete();
       return $post;
     }
 

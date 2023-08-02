@@ -64,4 +64,14 @@ class UserController extends Controller
         
     }
 
+    public function updateView(Request $request){
+        $user = User::findOrFail($request->id);
+        return view('updateUsers', ['user' => $user]);
+    }
+
+    public function update(Request $request){
+        $this->userRepository->update($request);
+        return redirect()->route('users');
+    }
+
 }

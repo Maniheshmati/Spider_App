@@ -51,4 +51,10 @@ class HandleUser
         $user = Auth::user();
         Auth::logout();
     }
+
+    public function update($request){
+        $user = User::findOrFail($request->id);
+        $user->update($request->all());
+        return $user;
+    }
 }
