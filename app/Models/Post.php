@@ -6,12 +6,13 @@ use App\Exports\PostExport;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Laravel\Scout\Searchable;
 use Maatwebsite\Excel;
 
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
     protected $fillable = ['title', 'body', 'user_id', 'category_id'];
 
     public function user(){
@@ -25,4 +26,13 @@ class Post extends Model
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+
+
+        return $array;
+    }
+
 }

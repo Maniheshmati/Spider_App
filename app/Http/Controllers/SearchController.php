@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
 use App\Models\User;
+use App\Models\Post;
+
+
 class SearchController extends Controller
 {
-    public function search(Request $request, PostController $postController, UserController $userController)
+    public function search(Request $request)
 {
-    $posts = Post::where('title', 'like', '%' . $request->search . '%')->orWhere('body', 'like', '%' . $request->search . '%')->get();
-    $users = User::where('name', 'like', '%' . $request->search . '%')->get();
-    
-    return view('posts.search', ['posts' => $posts, 'users' => $users]);
+    $users = User::search($request->search)->get();
+    $posts = Post::search($request->search)->get();
+    return view('posts.search', ['users' => $users, 'posts' => $posts]);
 }
 }
