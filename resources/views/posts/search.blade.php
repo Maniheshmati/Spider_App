@@ -22,7 +22,7 @@
             <div class="card-body">
               <h5 class="card-title"><a href="/post/{{ $post->id }}">{{ $post->title }}</a></h5>
               <p class="card-text">{{ $post->body }}</p>
-              <p class="card-text">Release Date: {{ $post->created_at }}</p>
+              <p class="card-text">Release Date: {{ $post->created_at->diffForHumans() }}</p>
             </div>
           </div>
         </div>
