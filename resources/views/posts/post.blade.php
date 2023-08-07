@@ -137,7 +137,7 @@
 
                 const marker = L.marker([{{ $post->latitude }}, {{ $post->longitude }}]).addTo(map);
 
-                marker.bindPopup("Help!").openPopup();
+                marker.bindPopup("{{ $post->title }}").openPopup();
 
                 </script>
                     

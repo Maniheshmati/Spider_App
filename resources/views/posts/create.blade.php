@@ -101,7 +101,7 @@
             @enderror
             <input type="hidden" name="latitude">
             <input type="hidden" name="longitude">
-            <div id="map" style="width: 100%; height: 400px;"></div>
+            <div id="map" style="width: 100%; height: 400px; border-redius: 10px;"></div>
             <script>
                 const map = L.map('map').setView([40.7128, -74.0060], 12);
             
