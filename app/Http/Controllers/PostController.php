@@ -108,7 +108,7 @@ public function modifyPost(Request $request)
        return Excel::download(new PostExport, 'posts.xlsx');
 
     }
-    
+
 }
 
 

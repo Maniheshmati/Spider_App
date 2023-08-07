@@ -29,6 +29,8 @@ class HandlePost
             'body' => $request->body,
             'user_id' => $user->id,
             'category_id' => $category->id,
+            'latitude' => $request->input('latitude'),
+            'longitude' => $request->input('longitude'),
         ]);
 
         return true;

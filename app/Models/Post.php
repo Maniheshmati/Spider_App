@@ -13,7 +13,7 @@ use Maatwebsite\Excel;
 class Post extends Model
 {
     use HasFactory, Searchable;
-    protected $fillable = ['title', 'body', 'user_id', 'category_id'];
+    protected $fillable = ['title', 'body', 'user_id', 'category_id', 'latitude', 'longitude'];
 
     public function user(){
         return $this->belongsTo(User::class);

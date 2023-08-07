@@ -9,6 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Spider-Man Help Requests</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <style>
         /* Custom Spider-Man theme styles */
         .spiderman-bg {
@@ -55,6 +57,7 @@
         .spiderman-error {
             color: #d83c3c;
         }
+
     </style>
 </head>
 
@@ -96,6 +99,45 @@
             @error('category')
             <div class="spiderman-error">{{ $message }}</div>
             @enderror
+            <input type="hidden" name="latitude">
+            <input type="hidden" name="longitude">
+            <div id="map" style="width: 400px; height: 400px;"></div>
+            <script>
+                const map = L.map('map').setView([40.7128, -74.0060], 12);
+            
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                  attribution: '&copy; OpenStreetMap contributors'
+                }).addTo(map);
+            
+                let marker;
+            
+                map.on('click', function (e) {
+                  if (marker) {
+                    map.removeLayer(marker);
+                  }
+            
+                  marker = L.marker(e.latlng).addTo(map);
+                  handleSubmit()
+                });
+            
+                function handleSubmit() {
+                    if (marker) {
+                        const latitude = marker.getLatLng().lat;
+                        const longitude = marker.getLatLng().lng;
+
+                        document.querySelector('input[name="latitude"]').value = latitude;
+                        document.querySelector('input[name="longitude"]').value = longitude;
+                        
+                        
+                        // ... Rest of the AJAX code
+                    } else {
+                        console.log('Please select a location on the map.');
+                    }
+
+                    
+                }
+                </script>
+              
         </form>
     </main>
 

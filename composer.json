@@ -14,6 +14,7 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "maatwebsite/excel": "^3.1",
+        "mailerlite/laravel-elasticsearch": "*",
         "mani/posts": "dev-master",
         "mani/users": "dev-master",
         "santigarcor/laratrust": "^8.2"
@@ -73,7 +74,7 @@
         {
             "type": "path",
             "url": "package/mani/posts/"
-        }, 
+        },
         {
             "type": "path",
             "url": "package/mani/users/"
