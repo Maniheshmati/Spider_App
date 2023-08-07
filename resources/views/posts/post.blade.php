@@ -7,6 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <title>{{ $post->title }}</title>
     <style>
         /* Add your custom styles here */
@@ -123,6 +125,19 @@
                     <a href="{{ route('posts.delete', ['id' => $post->id]) }}"
                         class="action-btn action-btn-primary">Delete Post</a>
                 </div>
+                <div id="map" style="width: 100%; height: 400px;"></div>
+            <script>
+                const map = L.map('map').setView([{{ $post->latitude }}, {{ $post->longitude }}], 12);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+                }).addTo(map);
+
+                const marker = L.marker([{{ $post->latitude }}, {{ $post->longitude }}]).addTo(map);
+
+                marker.bindPopup("Help!").openPopup();
+
+                </script>
             @endif
         @endif
 
