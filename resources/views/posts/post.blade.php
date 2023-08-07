@@ -125,6 +125,8 @@
                     <a href="{{ route('posts.delete', ['id' => $post->id]) }}"
                         class="action-btn action-btn-primary">Delete Post</a>
                 </div>
+                @if ($post->latitude && $post->longitude)
+                
                 <div id="map" style="width: 100%; height: 400px;"></div>
             <script>
                 const map = L.map('map').setView([{{ $post->latitude }}, {{ $post->longitude }}], 12);
@@ -138,6 +140,8 @@
                 marker.bindPopup("Help!").openPopup();
 
                 </script>
+                    
+                @endif
             @endif
         @endif
 
