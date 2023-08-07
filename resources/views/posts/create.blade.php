@@ -20,7 +20,7 @@
         }
 
         .spiderman-form {
-            max-width: 400px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             border: 2px solid #d83c3c;
@@ -48,6 +48,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            width: 100%;
         }
 
         .spiderman-submit:hover {
@@ -94,21 +95,20 @@
                 @endif
             </select>
             <br>
-            <input type="submit" value="Submit" class="spiderman-submit">
-
+            
             @error('category')
             <div class="spiderman-error">{{ $message }}</div>
             @enderror
             <input type="hidden" name="latitude">
             <input type="hidden" name="longitude">
-            <div id="map" style="width: 400px; height: 400px;"></div>
+            <div id="map" style="width: 100%; height: 400px;"></div>
             <script>
                 const map = L.map('map').setView([40.7128, -74.0060], 12);
             
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                  attribution: '&copy; OpenStreetMap contributors'
+                    attribution: '&copy; OpenStreetMap contributors'
                 }).addTo(map);
-            
+                
                 let marker;
             
                 map.on('click', function (e) {
@@ -119,7 +119,7 @@
                   marker = L.marker(e.latlng).addTo(map);
                   handleSubmit()
                 });
-            
+                
                 function handleSubmit() {
                     if (marker) {
                         const latitude = marker.getLatLng().lat;
@@ -138,13 +138,14 @@
                 }
                 </script>
               
-        </form>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 py-4 text-white text-center">
-        @include('layouts.footer')
-    </footer>
+              <input type="submit" value="Submit" class="spiderman-submit">
+            </form>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="bg-gray-800 py-4 text-white text-center">
+            @include('layouts.footer')
+        </footer>
 </body>
 
 </html>
