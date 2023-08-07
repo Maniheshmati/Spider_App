@@ -109,6 +109,11 @@ public function modifyPost(Request $request)
 
     }
 
+    public function mapView(){
+      $posts = Post::all();
+      return view('map', ['posts' => $posts]);
+    }
+
 }
 
 

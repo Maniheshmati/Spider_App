@@ -50,6 +50,9 @@
               <li class="nav-item">
                   <a href="/roles/" class="nav-link">Roles</a>
               </li>
+              <li class="nav-item">
+                <a href="/map" class="nav-link">Map</a>
+            </li>
 
 
 

@@ -96,3 +96,6 @@ Route::get('/posts/download', [PostController::class, 'exportToExcel']);
 
 # Admin panel 
 Route::get('/admin', [AdminController::class, 'panelView']);
+
+# Show all requests on map
+Route::get('/map', [PostController::class, 'mapView'])->name('map');
